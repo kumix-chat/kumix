@@ -1,0 +1,140 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+
+#. js-lingui-explicit-id
+msgid "nav.home"
+msgstr "Home"
+
+#. js-lingui-explicit-id
+msgid "nav.data"
+msgstr "Data"
+
+#. js-lingui-explicit-id
+msgid "nav.extensions"
+msgstr "Extensions"
+
+#. js-lingui-explicit-id
+msgid "nav.about"
+msgstr "About"
+
+#. js-lingui-explicit-id
+msgid "header.tagline"
+msgstr "web / desktop shared UI"
+
+#. js-lingui-explicit-id
+msgid "home.title"
+msgstr "Home"
+
+#. js-lingui-explicit-id
+msgid "home.description"
+msgstr "This is a minimal monorepo scaffold: shared packages + TanStack Router + (optional) Tauri backend."
+
+#. js-lingui-explicit-id
+msgid "home.button.click"
+msgstr "Click"
+
+#. js-lingui-explicit-id
+msgid "home.message.hello"
+msgstr "Hello from kumix"
+
+#. js-lingui-explicit-id
+msgid "about.title"
+msgstr "About"
+
+#. js-lingui-explicit-id
+msgid "about.description"
+msgstr "Put feature slices under packages/client-ui/src/features and keep apps thin."
+
+#. js-lingui-explicit-id
+msgid "data.title"
+msgstr "Data"
+
+#. js-lingui-explicit-id
+msgid "data.description"
+msgstr "TanStack Query + Table + Virtual demo (5,000 rows, sorted + virtualized)."
+
+#. js-lingui-explicit-id
+msgid "data.label.rows"
+msgstr "Rows:"
+
+#. js-lingui-explicit-id
+msgid "data.loading"
+msgstr "Loading..."
+
+#. js-lingui-explicit-id
+msgid "data.error"
+msgstr "Failed to load data:"
+
+#. js-lingui-explicit-id
+msgid "data.button.clear"
+msgstr "Clear"
+
+#. js-lingui-explicit-id
+msgid "data.button.invalidate"
+msgstr "Invalidate"
+
+#. js-lingui-explicit-id
+msgid "data.button.refetch"
+msgstr "Refetch"
+
+#. js-lingui-explicit-id
+msgid "data.placeholder.filter"
+msgstr "Filter name/category..."
+
+#. js-lingui-explicit-id
+msgid "data.column.id"
+msgstr "ID"
+
+#. js-lingui-explicit-id
+msgid "data.column.name"
+msgstr "Name"
+
+#. js-lingui-explicit-id
+msgid "data.column.category"
+msgstr "Category"
+
+#. js-lingui-explicit-id
+msgid "data.column.price"
+msgstr "Price (USD)"
+
+#. js-lingui-explicit-id
+msgid "data.column.updated"
+msgstr "Updated"
+
+#. js-lingui-explicit-id
+msgid "extensions.title"
+msgstr "Extensions"
+
+#. js-lingui-explicit-id
+msgid "extensions.description"
+msgstr "Bundled extensions come in two kinds: UI (iframe) and Proc (worker)."
+
+#. js-lingui-explicit-id
+msgid "extensions.ui.title"
+msgstr "UI Extension"
+
+#. js-lingui-explicit-id
+msgid "extensions.ui.description"
+msgstr "Loaded as an iframe with postMessage bridge."
+
+#. js-lingui-explicit-id
+msgid "extensions.proc.title"
+msgstr "Proc Extension"
+
+#. js-lingui-explicit-id
+msgid "extensions.proc.description"
+msgstr "Runs in a Web Worker and returns HTML."
+
+#. js-lingui-explicit-id
+msgid "extensions.proc.button.render"
+msgstr "Render"
+
+#. js-lingui-explicit-id
+msgid "extensions.proc.output"
+msgstr "Output"
+

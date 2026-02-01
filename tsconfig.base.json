@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "@kumix/client-core": ["packages/client-core/src/index.ts"],
+      "@kumix/matrix-adapter": ["packages/matrix-adapter/src/index.ts"],
+      "@kumix/client-ui": ["packages/client-ui/src/index.ts"],
+      "@kumix/ui": ["packages/ui/src/index.ts"],
+      "@kumix/plugin-host": ["packages/plugin-host/src/index.ts"],
+      "@kumix/plugin": ["packages/plugin/src/index.ts"],
+      "@kumix/plugin-sdk": ["packages/plugin-sdk/src/index.ts"],
+      "@kumix/storage": ["packages/storage/src/index.ts"],
+      "@kumix/search": ["packages/search/src/index.ts"],
+      "@kumix/config": ["packages/config/src/index.ts"],
+      "@kumix/utils": ["packages/utils/src/index.ts"]
+    }
+  }
+}

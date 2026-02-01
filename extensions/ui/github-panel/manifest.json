@@ -1,0 +1,7 @@
+{
+  "id": "github-panel",
+  "name": "GitHub Panel",
+  "version": "0.1.0",
+  "capabilities": ["unfurl"]
+}
+

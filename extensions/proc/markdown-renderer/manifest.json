@@ -1,0 +1,7 @@
+{
+  "id": "markdown-renderer",
+  "name": "Markdown Renderer",
+  "version": "0.1.0",
+  "capabilities": ["render.markdown"]
+}
+

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>github-panel</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      }
+      body {
+        margin: 0;
+        padding: 12px;
+        background: #0b1020;
+        color: #e2e8f0;
+      }
+      .card {
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.04);
+        padding: 12px;
+      }
+      .title {
+        font-weight: 800;
+        margin: 0 0 6px;
+      }
+      .muted {
+        opacity: 0.8;
+        font-size: 12px;
+        margin: 0 0 12px;
+      }
+      button {
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.04);
+        color: #fff;
+        padding: 10px 12px;
+        cursor: pointer;
+        font-weight: 600;
+      }
+      button:hover {
+        background: rgba(255, 255, 255, 0.08);
+      }
+      pre {
+        margin: 10px 0 0;
+        padding: 10px;
+        border-radius: 10px;
+        background: rgba(0, 0, 0, 0.2);
+        overflow: auto;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1 class="title">GitHub Panel (UI Extension)</h1>
+      <p class="muted">Sandboxed iframe app. Demonstrates postMessage ping/pong.</p>
+      <button id="ping">Ping host</button>
+      <pre id="log"></pre>
+    </div>
+
+    <script>
+      const logEl = document.getElementById("log")
+      function log(value) {
+        logEl.textContent += value + "\\n"
+      }
+
+      window.addEventListener("message", (event) => {
+        const msg = event.data
+        if (!msg || typeof msg !== "object") return
+        if (msg.type === "pong") {
+          log("pong: " + msg.id)
+        }
+      })
+
+      document.getElementById("ping").addEventListener("click", () => {
+        const id = (crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now())
+        log("ping: " + id)
+        window.parent.postMessage({ type: "ping", id }, "*")
+      })
+    </script>
+  </body>
+</html>
+

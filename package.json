@@ -1,0 +1,40 @@
+{
+  "name": "kumix",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "check": "biome check .",
+    "dev:web": "cd apps/web && bun run dev",
+    "build:web": "cd apps/web && bun run build",
+    "typecheck:web": "cd apps/web && bun run typecheck",
+    "dev:desktop": "cd apps/desktop && bun run tauri dev",
+    "build:desktop": "cd apps/desktop && bun run tauri build",
+    "typecheck:desktop": "cd apps/desktop && bun run typecheck",
+    "lint": "biome lint .",
+    "format": "biome format --write .",
+    "i18n:extract": "lingui extract",
+    "i18n:compile": "lingui compile",
+    "lint:rust": "cargo clippy --manifest-path apps/desktop/src-tauri/Cargo.toml --all-targets --all-features -- -D warnings",
+    "format:rust": "cargo fmt --manifest-path apps/desktop/src-tauri/Cargo.toml",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:web": "vitest run --project web",
+    "test:desktop": "vitest run --project desktop",
+    "test:packages": "vitest run --project packages",
+    "test:rust": "cargo test --manifest-path apps/desktop/src-tauri/Cargo.toml"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.0.0",
+    "@lingui/babel-plugin-lingui-macro": "^5.0.0",
+    "@lingui/cli": "^5.0.0",
+    "@lingui/vite-plugin": "^5.0.0",
+    "@testing-library/jest-dom": "^6.4.2",
+    "@testing-library/react": "^16.0.0",
+    "jsdom": "^24.0.0",
+    "vitest": "^3.0.0"
+  }
+}

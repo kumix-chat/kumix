@@ -1,0 +1,24 @@
+{
+  "name": "@kumix/client-ui",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@kumix/ui": "workspace:*"
+  },
+  "peerDependencies": {
+    "@lingui/core": "^5.0.0",
+    "@lingui/react": "^5.0.0",
+    "@tanstack/react-query": "^5.0.0",
+    "@tanstack/react-router": "^1.0.0",
+    "@tanstack/react-table": "^8.0.0",
+    "@tanstack/react-virtual": "^3.0.0",
+    "jotai": "^2.9.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "zustand": "^4.5.0"
+  }
+}

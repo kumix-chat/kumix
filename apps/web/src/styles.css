@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-slate-950 text-slate-50;
+  }
+
+  a {
+    @apply text-sky-300 hover:text-sky-200;
+  }
+
+  code {
+    @apply font-mono text-[0.95em] text-slate-200;
+  }
+}
+

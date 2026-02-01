@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "kumix policy",
+  "type": "object",
+  "required": ["name", "capabilities", "pluginOrigins"],
+  "properties": {
+    "name": { "type": "string" },
+    "capabilities": { "type": "array", "items": { "type": "string" } },
+    "pluginOrigins": { "type": "array", "items": { "type": "string" } }
+  }
+}
+
