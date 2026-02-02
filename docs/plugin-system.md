@@ -34,12 +34,20 @@ Proc (`extensions/proc/*/manifest.json`):
 
 ## Enable / disable
 
-The demo UI at `/extensions` allows toggling extensions on/off. The state is stored in localStorage under
-`kumix.extensions.enabled.v1`.
+The demo UI at `/extensions` allows toggling extensions on/off. The state is stored via a key-value port (default:
+localStorage) under `kumix.extensions.enabled.v1`.
+
+## Policies
+
+Bundled policies live in `policies/defaults/` and are applied by `@kumix/plugin` at runtime.
+
+- Select policy via `VITE_KUMIX_POLICY=dev|strict` (fallback: `development`/`test` => `dev`, otherwise `strict`)
+- Extensions whose declared `capabilities` are not allowed by the active policy are filtered out of the registry
+- UI extensions are loaded via `srcDoc` with `origin="null"`, so `pluginOrigins` must include `*` or `null` to allow them
 
 ## Messaging
 
-- UI: iframe `postMessage` ping/pong demo (host validates `event.source`)
+- UI: iframe `postMessage` ping/pong demo using a host-injected bootstrap (`__KUMIX_UI_BOOTSTRAP__`)
 - Proc: request/response over worker `postMessage` (`ping`, `render.*`)
 
 ## WASM

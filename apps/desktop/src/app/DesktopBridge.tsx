@@ -37,12 +37,11 @@ export function DesktopBridge() {
   }
 
   return (
-    <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-      <Button variant="ghost" onClick={greet} disabled={!isTauri()}>
+    <div className="flex items-center gap-2">
+      <Button intent="outline" onPress={greet} isDisabled={!isTauri()}>
         Invoke backend
       </Button>
-      <span style={{ fontSize: 12, opacity: 0.85 }}>{label}</span>
+      <span className="text-xs text-slate-200">{label}</span>
     </div>
   )
 }
-

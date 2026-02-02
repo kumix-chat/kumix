@@ -1,21 +1,18 @@
-export type MatrixClientOptions = {
-  homeserverUrl: string
-  accessToken?: string
-}
+import type { MatrixAdapterPort, MatrixClientOptions, MatrixClientPort } from "@kumix/client-core";
 
-export type MatrixClient = {
-  startSync(): Promise<void>
-  stopSync(): Promise<void>
-}
+export type { MatrixClientOptions, MatrixClientPort } from "@kumix/client-core";
 
-export function createMatrixClient(_options: MatrixClientOptions): MatrixClient {
+export function createMatrixClient(_options: MatrixClientOptions): MatrixClientPort {
   return {
     async startSync() {
       // TODO: wire matrix-js-sdk
     },
     async stopSync() {
       // TODO
-    }
-  }
+    },
+  };
 }
 
+export const matrixAdapter: MatrixAdapterPort = {
+  createClient: createMatrixClient,
+};

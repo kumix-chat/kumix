@@ -1,2 +1,1 @@
-export { ExtensionsPage } from "./ui/ExtensionsPage"
-
+export { ExtensionsPage } from "./ui/ExtensionsPage";

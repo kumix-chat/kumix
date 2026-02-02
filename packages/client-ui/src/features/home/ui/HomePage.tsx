@@ -1,10 +1,10 @@
-import { Button, Card, CardContent, CardDescription, CardHeader, CardTitle } from "@kumix/ui"
-import type { ReactNode } from "react"
-import { Trans } from "@lingui/react/macro"
-import { useHomeVm } from "../vm/useHomeVm"
+import { Button, Card, CardContent, CardDescription, CardHeader, CardTitle } from "@kumix/ui";
+import { Trans } from "@lingui/react/macro";
+import type { ReactNode } from "react";
+import { useHomeVm } from "../vm/useHomeVm";
 
 export function HomePage(props: { right?: ReactNode }) {
-  const vm = useHomeVm()
+  const vm = useHomeVm();
 
   return (
     <section className="grid gap-4">
@@ -15,16 +15,17 @@ export function HomePage(props: { right?: ReactNode }) {
           </CardTitle>
           <CardDescription>
             <Trans id="home.description">
-              This is a minimal monorepo scaffold: shared packages + TanStack Router + (optional) Tauri backend.
+              This is a minimal monorepo scaffold: shared packages + TanStack Router + (optional)
+              Tauri backend.
             </Trans>
           </CardDescription>
         </CardHeader>
         <CardContent className="flex flex-col gap-3">
           <div className="flex flex-wrap items-center gap-3">
-            <Button onClick={() => vm.actions.showMessage()}>
+            <Button onPress={() => vm.actions.showMessage()}>
               <Trans id="home.button.click">Click</Trans>
             </Button>
-            <Button variant="ghost" onClick={() => vm.actions.increment()}>
+            <Button intent="outline" onPress={() => vm.actions.increment()}>
               Count +1 ({vm.state.count})
             </Button>
             {props.right}
@@ -37,5 +38,5 @@ export function HomePage(props: { right?: ReactNode }) {
         </CardContent>
       </Card>
     </section>
-  )
+  );
 }

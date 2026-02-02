@@ -1,4 +1,4 @@
-import { defineConfig } from "@lingui/cli"
+import { defineConfig } from "@lingui/cli";
 
 export default defineConfig({
   sourceLocale: "en",
@@ -7,8 +7,7 @@ export default defineConfig({
     {
       path: "<rootDir>/packages/client-ui/src/locales/{locale}/messages",
       include: ["apps/web/src", "packages/client-ui/src"],
-      exclude: ["**/*.test.*", "**/node_modules/**"]
-    }
-  ]
-})
-
+      exclude: ["**/*.test.*", "**/node_modules/**"],
+    },
+  ],
+});

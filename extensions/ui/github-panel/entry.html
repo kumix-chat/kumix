@@ -63,23 +63,32 @@
     <script>
       const logEl = document.getElementById("log")
       function log(value) {
-        logEl.textContent += value + "\\n"
+        logEl.textContent += `${value}\\n`
+      }
+
+      const boot = window.__KUMIX_UI_BOOTSTRAP__
+      const hostOrigin = boot && typeof boot.hostOrigin === "string" ? boot.hostOrigin : ""
+      const token = boot && typeof boot.token === "string" ? boot.token : ""
+
+      if (!hostOrigin || !token) {
+        log("Missing bootstrap from host (origin/token).")
       }
 
       window.addEventListener("message", (event) => {
+        if (hostOrigin && event.origin !== hostOrigin) return
         const msg = event.data
         if (!msg || typeof msg !== "object") return
-        if (msg.type === "pong") {
-          log("pong: " + msg.id)
+        if (msg.type === "kumix.pong" && msg.token === token) {
+          log(`pong: ${msg.id}`)
         }
       })
 
       document.getElementById("ping").addEventListener("click", () => {
-        const id = (crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now())
-        log("ping: " + id)
-        window.parent.postMessage({ type: "ping", id }, "*")
+        if (!hostOrigin || !token) return
+        const id = crypto?.randomUUID ? crypto.randomUUID() : String(Date.now())
+        log(`ping: ${id}`)
+        window.parent.postMessage({ type: "kumix.ping", id, token }, hostOrigin)
       })
     </script>
   </body>
 </html>
-

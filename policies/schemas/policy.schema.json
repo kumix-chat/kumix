@@ -9,4 +9,3 @@
     "pluginOrigins": { "type": "array", "items": { "type": "string" } }
   }
 }
-

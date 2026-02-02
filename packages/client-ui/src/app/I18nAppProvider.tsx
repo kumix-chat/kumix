@@ -1,34 +1,65 @@
-import type { ReactNode } from "react"
-import { useEffect, useState } from "react"
-import { i18n } from "@lingui/core"
-import { I18nProvider } from "@lingui/react"
-import type { SupportedLocale } from "../i18n/i18n"
-import { activateLocale, getInitialLocale } from "../i18n/i18n"
+import { Card, CardContent, CardHeader, CardTitle } from "@kumix/ui";
+import { i18n } from "@lingui/core";
+import { I18nProvider } from "@lingui/react";
+import type { ReactNode } from "react";
+import { useEffect, useState } from "react";
+import type { SupportedLocale } from "../i18n/i18n";
+import {
+  activateLocale,
+  getInitialLocale,
+  isSupportedLocale,
+  LOCALE_STORAGE_KEY,
+} from "../i18n/i18n";
+import { useKumixKeyValue } from "./ports/KeyValueProvider";
 
 export function I18nAppProvider(props: { children: ReactNode; initialLocale?: SupportedLocale }) {
-  const [ready, setReady] = useState(false)
-  const [initialLocale] = useState<SupportedLocale>(() => props.initialLocale ?? getInitialLocale())
+  const keyValue = useKumixKeyValue();
+  const [ready, setReady] = useState(false);
+  const [locale, setLocale] = useState<SupportedLocale>(
+    () => props.initialLocale ?? getInitialLocale(),
+  );
 
   useEffect(() => {
-    let cancelled = false
+    if (props.initialLocale) return;
+    let cancelled = false;
 
-    activateLocale(initialLocale).then(() => {
-      if (!cancelled) setReady(true)
-    })
+    void (async () => {
+      const saved = await keyValue.get(LOCALE_STORAGE_KEY);
+      if (cancelled) return;
+      if (isSupportedLocale(saved)) setLocale(saved);
+    })();
 
     return () => {
-      cancelled = true
-    }
-  }, [initialLocale])
+      cancelled = true;
+    };
+  }, [keyValue, props.initialLocale]);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    void (async () => {
+      await activateLocale(locale);
+      if (!cancelled) setReady(true);
+      await keyValue.set(LOCALE_STORAGE_KEY, locale);
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [keyValue, locale]);
 
   if (!ready) {
     return (
-      <div className="min-h-screen bg-slate-950 text-slate-50 grid place-items-center">
-        <div className="text-sm text-slate-200">Loading…</div>
+      <div className="grid min-h-screen place-items-center bg-slate-950 text-slate-50">
+        <Card className="w-[320px]">
+          <CardHeader>
+            <CardTitle>kumix</CardTitle>
+          </CardHeader>
+          <CardContent className="text-sm text-slate-200">Loading...</CardContent>
+        </Card>
       </div>
-    )
+    );
   }
 
-  return <I18nProvider i18n={i18n}>{props.children}</I18nProvider>
+  return <I18nProvider i18n={i18n}>{props.children}</I18nProvider>;
 }
-

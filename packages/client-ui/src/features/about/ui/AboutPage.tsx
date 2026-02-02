@@ -1,5 +1,5 @@
-import { Trans } from "@lingui/react/macro"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@kumix/ui"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@kumix/ui";
+import { Trans } from "@lingui/react/macro";
 
 export function AboutPage() {
   return (
@@ -11,7 +11,8 @@ export function AboutPage() {
           </CardTitle>
           <CardDescription>
             <Trans id="about.description">
-              Put feature slices under <code>packages/client-ui/src/features</code> and keep apps thin.
+              Put feature slices under <code>packages/client-ui/src/features</code> and keep apps
+              thin.
             </Trans>
           </CardDescription>
         </CardHeader>
@@ -30,5 +31,5 @@ export function AboutPage() {
         </CardContent>
       </Card>
     </section>
-  )
+  );
 }

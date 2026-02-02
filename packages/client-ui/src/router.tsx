@@ -1,56 +1,69 @@
-import { RootRoute, Route, createRouter } from "@tanstack/react-router"
-import { appRootClass } from "@kumix/ui"
-import { AppShell } from "./app/AppShell"
-import { AboutPage } from "./features/about/AboutPage"
-import { DataPage } from "./features/data/DataPage"
-import { ExtensionsPage } from "./features/extensions/ExtensionsPage"
-import { HomePage } from "./features/home/HomePage"
-import type { ReactNode } from "react"
+import { appRootClass } from "@kumix/ui";
+import { createRootRoute, createRoute, createRouter } from "@tanstack/react-router";
+import type { ReactNode } from "react";
+import { AppShell } from "./app/AppShell";
+import { AboutPage } from "./features/about/AboutPage";
+import { DataPage } from "./features/data/DataPage";
+import { ExtensionsPage } from "./features/extensions/ExtensionsPage";
+import { HomePage } from "./features/home/HomePage";
+import { MatrixPage } from "./features/matrix/MatrixPage";
 
 export type KumixRouterOptions = {
-  homeRight?: ReactNode
-  headerRight?: ReactNode
-}
+  homeRight?: ReactNode;
+  headerRight?: ReactNode;
+};
 
 export function createKumixRouter(options: KumixRouterOptions = {}) {
-  const rootRoute = new RootRoute({
+  const rootRoute = createRootRoute({
     component: () => (
       <div className={appRootClass}>
         <AppShell headerRight={options.headerRight} />
       </div>
-    )
-  })
+    ),
+  });
 
-  const indexRoute = new Route({
+  const indexRoute = createRoute({
     getParentRoute: () => rootRoute,
     path: "/",
-    component: () => <HomePage right={options.homeRight} />
-  })
+    component: () => <HomePage right={options.homeRight} />,
+  });
 
-  const aboutRoute = new Route({
+  const aboutRoute = createRoute({
     getParentRoute: () => rootRoute,
     path: "about",
-    component: () => <AboutPage />
-  })
+    component: () => <AboutPage />,
+  });
 
-  const dataRoute = new Route({
+  const dataRoute = createRoute({
     getParentRoute: () => rootRoute,
     path: "data",
-    component: () => <DataPage />
-  })
+    component: () => <DataPage />,
+  });
 
-  const extensionsRoute = new Route({
+  const extensionsRoute = createRoute({
     getParentRoute: () => rootRoute,
     path: "extensions",
-    component: () => <ExtensionsPage />
-  })
+    component: () => <ExtensionsPage />,
+  });
 
-  const routeTree = rootRoute.addChildren([indexRoute, aboutRoute, dataRoute, extensionsRoute])
-  return createRouter({ routeTree })
+  const matrixRoute = createRoute({
+    getParentRoute: () => rootRoute,
+    path: "matrix",
+    component: () => <MatrixPage />,
+  });
+
+  const routeTree = rootRoute.addChildren([
+    indexRoute,
+    aboutRoute,
+    dataRoute,
+    extensionsRoute,
+    matrixRoute,
+  ]);
+  return createRouter({ routeTree });
 }
 
 declare module "@tanstack/react-router" {
   interface Register {
-    router: ReturnType<typeof createKumixRouter>
+    router: ReturnType<typeof createKumixRouter>;
   }
 }

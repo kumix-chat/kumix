@@ -1,6 +1,6 @@
 [package]
 name = "kumix-desktop"
-version = "0.1.0"
+version = "0.0.1"
 description = "kumix desktop app"
 authors = ["kumix-chat"]
 edition = "2021"
@@ -22,4 +22,3 @@ lto = true
 opt-level = "s"
 panic = "abort"
 strip = true
-

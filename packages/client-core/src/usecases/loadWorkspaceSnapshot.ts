@@ -1,6 +1,5 @@
-import type { StoragePort, WorkspaceSnapshot } from "../ports/storage"
+import type { StoragePort, WorkspaceSnapshot } from "../ports/storage";
 
 export async function loadWorkspaceSnapshot(storage: StoragePort): Promise<WorkspaceSnapshot> {
-  return storage.loadSnapshot()
+  return storage.loadSnapshot();
 }
-

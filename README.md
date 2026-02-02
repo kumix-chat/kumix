@@ -49,6 +49,7 @@ Desktop uses the same UI as web and demonstrates IPC by invoking `greet` from Ru
 - Data: TanStack Query + Table + Virtual (demo at `/data`)
 - Styling: Tailwind CSS
 - State: Jotai (demo in the Home page)
+- Matrix: port boundary + stub adapter (demo at `/matrix`)
 - i18n: LinguiJS (demo: switch language in header)
 - UI: `packages/ui` is the shared component layer (IntentUI-style; safe place to vendor IntentUI components)
 
@@ -58,7 +59,8 @@ Open `/extensions` to see bundled extension demos:
 
 - UI extensions (`extensions/ui/*`): sandboxed iframes (postMessage)
 - Proc extensions (`extensions/proc/*`): Web Workers (request/response)
-- Enable/disable is demoed in-app (stored in localStorage)
+- Enable/disable is demoed in-app (stored via a key-value port; default: localStorage)
+- Policy can be selected via `VITE_KUMIX_POLICY=dev|strict` (defaults to `dev` in dev/test, `strict` otherwise)
 
 ## IntentUI
 

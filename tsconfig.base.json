@@ -11,6 +11,7 @@
     "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
+      "@/*": ["packages/ui/src/*"],
       "@kumix/client-core": ["packages/client-core/src/index.ts"],
       "@kumix/matrix-adapter": ["packages/matrix-adapter/src/index.ts"],
       "@kumix/client-ui": ["packages/client-ui/src/index.ts"],

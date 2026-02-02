@@ -1,9 +1,21 @@
-import { Trans } from "@lingui/react/macro"
-import { Button, Card, CardContent, CardDescription, CardHeader, CardTitle, Checkbox, Select, Textarea } from "@kumix/ui"
-import { useExtensionsVm } from "../vm/useExtensionsVm"
+import {
+  Alert,
+  AlertDescription,
+  Button,
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+  Checkbox,
+  Select,
+  Textarea,
+} from "@kumix/ui";
+import { Trans } from "@lingui/react/macro";
+import { useExtensionsVm } from "../vm/useExtensionsVm";
 
 export function ExtensionsPage() {
-  const vm = useExtensionsVm()
+  const vm = useExtensionsVm();
 
   return (
     <section className="grid gap-4">
@@ -33,7 +45,9 @@ export function ExtensionsPage() {
       <Card>
         <CardHeader>
           <CardTitle>Extension Controls</CardTitle>
-          <CardDescription>Enable/disable bundled extensions (stored in localStorage).</CardDescription>
+          <CardDescription>
+            Enable/disable bundled extensions (stored via a key-value port; default: localStorage).
+          </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4 lg:grid-cols-2">
           <div className="grid gap-2">
@@ -43,21 +57,26 @@ export function ExtensionsPage() {
             ) : (
               <div className="grid gap-2">
                 {vm.state.ui.map((ext) => {
-                  const key = `ui:${ext.manifest.id}` as const
+                  const key = `ui:${ext.manifest.id}` as const;
+                  const label = `${ext.manifest.name} (${ext.manifest.id})`;
                   return (
-                    <label key={ext.manifest.id} className="flex items-start gap-2 text-sm text-slate-200">
+                    <div
+                      key={ext.manifest.id}
+                      className="flex items-start gap-2 text-sm text-slate-200"
+                    >
                       <Checkbox
                         checked={vm.state.enabledKeys.includes(key)}
                         onChange={(event) => vm.actions.setEnabled(key, event.target.checked)}
+                        aria-label={label}
                       />
                       <span className="grid">
                         <span className="text-slate-100">{ext.manifest.name}</span>
                         <span className="text-xs text-slate-400">
-                          {ext.manifest.id} · {ext.manifest.capabilities.join(", ")}
+                          {ext.manifest.id} / {ext.manifest.capabilities.join(", ")}
                         </span>
                       </span>
-                    </label>
-                  )
+                    </div>
+                  );
                 })}
               </div>
             )}
@@ -70,21 +89,26 @@ export function ExtensionsPage() {
             ) : (
               <div className="grid gap-2">
                 {vm.state.proc.map((ext) => {
-                  const key = `proc:${ext.manifest.id}` as const
+                  const key = `proc:${ext.manifest.id}` as const;
+                  const label = `${ext.manifest.name} (${ext.manifest.id})`;
                   return (
-                    <label key={ext.manifest.id} className="flex items-start gap-2 text-sm text-slate-200">
+                    <div
+                      key={ext.manifest.id}
+                      className="flex items-start gap-2 text-sm text-slate-200"
+                    >
                       <Checkbox
                         checked={vm.state.enabledKeys.includes(key)}
                         onChange={(event) => vm.actions.setEnabled(key, event.target.checked)}
+                        aria-label={label}
                       />
                       <span className="grid">
                         <span className="text-slate-100">{ext.manifest.name}</span>
                         <span className="text-xs text-slate-400">
-                          {ext.manifest.id} · {ext.manifest.capabilities.join(", ")}
+                          {ext.manifest.id} / {ext.manifest.capabilities.join(", ")}
                         </span>
                       </span>
-                    </label>
-                  )
+                    </div>
+                  );
                 })}
               </div>
             )}
@@ -99,13 +123,18 @@ export function ExtensionsPage() {
               <Trans id="extensions.ui.title">UI Extension</Trans>
             </CardTitle>
             <CardDescription>
-              <Trans id="extensions.ui.description">Loaded as an iframe with postMessage bridge.</Trans>
+              <Trans id="extensions.ui.description">
+                Loaded as an iframe with postMessage bridge.
+              </Trans>
             </CardDescription>
           </CardHeader>
           <CardContent className="grid gap-3">
             {vm.state.selectedUi ? (
               <>
-                <Select value={vm.state.selectedUiId} onChange={(event) => vm.actions.selectUi(event.target.value)}>
+                <Select
+                  value={vm.state.selectedUiId}
+                  onChange={(event) => vm.actions.selectUi(event.target.value)}
+                >
                   {vm.state.enabledUi.map((ext) => (
                     <option key={ext.manifest.id} value={ext.manifest.id}>
                       {ext.manifest.name}
@@ -113,14 +142,14 @@ export function ExtensionsPage() {
                   ))}
                 </Select>
                 <div className="text-xs text-slate-400">
-                  {vm.state.selectedUi.manifest.id} · v{vm.state.selectedUi.manifest.version} ·{" "}
+                  {vm.state.selectedUi.manifest.id} / v{vm.state.selectedUi.manifest.version} /{" "}
                   {vm.state.selectedUi.manifest.capabilities.join(", ")}
                 </div>
                 <iframe
                   ref={vm.refs.iframeRef}
                   title={vm.state.selectedUi.manifest.name}
                   sandbox="allow-scripts"
-                  srcDoc={vm.state.selectedUi.html}
+                  srcDoc={vm.state.selectedUiSrcDoc}
                   className="h-[320px] w-full rounded-xl border border-white/10 bg-slate-950"
                 />
               </>
@@ -144,7 +173,10 @@ export function ExtensionsPage() {
               <>
                 <div className="grid gap-2 sm:grid-cols-[1fr_auto] sm:items-end">
                   <div className="grid gap-2">
-                    <Select value={vm.state.selectedProcId} onChange={(event) => vm.actions.selectProc(event.target.value)}>
+                    <Select
+                      value={vm.state.selectedProcId}
+                      onChange={(event) => vm.actions.selectProc(event.target.value)}
+                    >
                       {vm.state.enabledProc.map((ext) => (
                         <option key={ext.manifest.id} value={ext.manifest.id}>
                           {ext.manifest.name}
@@ -152,12 +184,17 @@ export function ExtensionsPage() {
                       ))}
                     </Select>
                     <div className="text-xs text-slate-400">
-                      {vm.state.selectedProc.manifest.id} · v{vm.state.selectedProc.manifest.version} ·{" "}
+                      {vm.state.selectedProc.manifest.id} / v
+                      {vm.state.selectedProc.manifest.version} /{" "}
                       {vm.state.selectedProc.manifest.capabilities.join(", ")}
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Button variant="ghost" onClick={() => void vm.actions.render()} disabled={vm.state.procState.kind === "rendering"}>
+                    <Button
+                      intent="outline"
+                      onPress={() => void vm.actions.render()}
+                      isDisabled={vm.state.procState.kind === "rendering"}
+                    >
                       <Trans id="extensions.proc.button.render">Render</Trans>
                     </Button>
                   </div>
@@ -174,9 +211,9 @@ export function ExtensionsPage() {
             )}
 
             {vm.state.procState.kind === "error" ? (
-              <div className="rounded-xl border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-100">
-                {vm.state.procState.message}
-              </div>
+              <Alert variant="destructive">
+                <AlertDescription>{vm.state.procState.message}</AlertDescription>
+              </Alert>
             ) : null}
 
             <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
@@ -185,6 +222,7 @@ export function ExtensionsPage() {
               </div>
               <div
                 className="mt-2 grid gap-2 text-sm text-slate-100"
+                // biome-ignore lint/security/noDangerouslySetInnerHtml: Proc extensions return HTML (demo); production should sanitize/escape per capability.
                 dangerouslySetInnerHTML={{ __html: vm.state.renderedHtml }}
               />
             </div>
@@ -192,5 +230,5 @@ export function ExtensionsPage() {
         </Card>
       </div>
     </section>
-  )
+  );
 }

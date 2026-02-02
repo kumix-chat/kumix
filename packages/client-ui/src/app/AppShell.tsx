@@ -1,20 +1,28 @@
-import { Link, Outlet } from "@tanstack/react-router"
-import { appHeaderClass, appMainClass, cn } from "@kumix/ui"
-import type { ReactNode } from "react"
-import { Trans } from "@lingui/react/macro"
+import { appHeaderClass, appMainClass, cn } from "@kumix/ui";
+import { Trans } from "@lingui/react/macro";
+import { Link, Outlet } from "@tanstack/react-router";
+import type { ReactNode } from "react";
 
 export function AppShell(props: { headerRight?: ReactNode }) {
-  const linkBase = "text-sm font-medium text-slate-200 hover:text-white"
+  const linkBase = "text-sm font-medium text-slate-200 hover:text-white";
   return (
     <>
       <header className={appHeaderClass}>
         <div className="flex items-center gap-3">
           <div className="font-extrabold tracking-tight">kumix</div>
           <nav className="flex items-center gap-3">
-            <Link to="/" className={linkBase} activeProps={{ className: cn(linkBase, "underline") }}>
+            <Link
+              to="/"
+              className={linkBase}
+              activeProps={{ className: cn(linkBase, "underline") }}
+            >
               <Trans id="nav.home">Home</Trans>
             </Link>
-            <Link to="/data" className={linkBase} activeProps={{ className: cn(linkBase, "underline") }}>
+            <Link
+              to="/data"
+              className={linkBase}
+              activeProps={{ className: cn(linkBase, "underline") }}
+            >
               <Trans id="nav.data">Data</Trans>
             </Link>
             <Link
@@ -24,7 +32,18 @@ export function AppShell(props: { headerRight?: ReactNode }) {
             >
               <Trans id="nav.extensions">Extensions</Trans>
             </Link>
-            <Link to="/about" className={linkBase} activeProps={{ className: cn(linkBase, "underline") }}>
+            <Link
+              to="/matrix"
+              className={linkBase}
+              activeProps={{ className: cn(linkBase, "underline") }}
+            >
+              <Trans id="nav.matrix">Matrix</Trans>
+            </Link>
+            <Link
+              to="/about"
+              className={linkBase}
+              activeProps={{ className: cn(linkBase, "underline") }}
+            >
               <Trans id="nav.about">About</Trans>
             </Link>
           </nav>
@@ -40,5 +59,5 @@ export function AppShell(props: { headerRight?: ReactNode }) {
         <Outlet />
       </main>
     </>
-  )
+  );
 }

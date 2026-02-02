@@ -25,7 +25,7 @@ This repo is a scaffold with an explicit layering and state management policy.
 ## MVVM rule
 
 - View (`ui/`): render only (no I/O, no global side effects)
-- VM (`vm/`): state orchestration, effects, I/O (localStorage, plugin, matrix, storage, tauri)
+- VM (`vm/`): state orchestration, effects, I/O (KeyValuePort, plugin, matrix, storage, tauri)
 - State (`state/`): atoms + types
 
 Rule of thumb: Views should not import atoms directly. Views call `useXxxVm()` and render `vm.state` + `vm.actions`.

@@ -1,2 +1,1 @@
-export { DataPage } from "./ui/DataPage"
-
+export { DataPage } from "./ui/DataPage";

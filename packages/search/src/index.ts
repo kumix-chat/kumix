@@ -1,10 +1,9 @@
 export type SearchHit = {
-  id: string
-  title: string
-  snippet?: string
-}
+  id: string;
+  title: string;
+  snippet?: string;
+};
 
 export interface SearchPort {
-  query(text: string): Promise<SearchHit[]>
+  query(text: string): Promise<SearchHit[]>;
 }
-

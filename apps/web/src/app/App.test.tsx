@@ -1,18 +1,18 @@
-import { fireEvent, render, screen } from "@testing-library/react"
-import { describe, expect, it } from "vitest"
-import { App } from "./App"
+import { fireEvent, render, screen } from "@testing-library/react";
+import { describe, it } from "vitest";
+import { App } from "./App";
 
 describe("apps/web", () => {
   it("switches locale using Lingui", async () => {
-    localStorage.clear()
+    localStorage.clear();
 
-    render(<App />)
+    render(<App />);
 
-    await screen.findByRole("heading", { name: "Home" })
+    await screen.findByRole("heading", { name: "Home" });
 
-    const language = screen.getByRole("combobox", { name: "Language" })
-    fireEvent.change(language, { target: { value: "ja" } })
+    const language = screen.getByRole("combobox", { name: "Language" });
+    fireEvent.change(language, { target: { value: "ja" } });
 
-    await screen.findByRole("heading", { name: "ホーム" })
-  })
-})
+    await screen.findByRole("heading", { name: "ホーム" });
+  });
+});

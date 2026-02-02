@@ -1,12 +1,17 @@
 {
   "name": "@kumix/client-ui",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.0.1",
   "type": "module",
   "exports": {
     ".": "./src/index.ts"
   },
   "dependencies": {
+    "@kumix/client-core": "workspace:*",
+    "@kumix/config": "workspace:*",
+    "@kumix/matrix-adapter": "workspace:*",
+    "@kumix/plugin": "workspace:*",
+    "@kumix/storage": "workspace:*",
     "@kumix/ui": "workspace:*"
   },
   "peerDependencies": {
@@ -17,7 +22,7 @@
     "@tanstack/react-table": "^8.0.0",
     "@tanstack/react-virtual": "^3.0.0",
     "jotai": "^2.9.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^18.2.0 || ^19.0.0",
+    "react-dom": "^18.2.0 || ^19.0.0"
   }
 }

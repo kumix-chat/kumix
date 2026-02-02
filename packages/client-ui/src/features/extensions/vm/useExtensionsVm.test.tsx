@@ -1,40 +1,50 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react"
-import { Provider as JotaiProvider } from "jotai"
-import { createStore } from "jotai/vanilla"
-import { describe, expect, it } from "vitest"
-import { useExtensionsVm } from "./useExtensionsVm"
+import type { KeyValuePort } from "@kumix/client-core";
+import type { BundledProcExtension, BundledUiExtension } from "@kumix/plugin";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { Provider as JotaiProvider } from "jotai";
+import { createStore } from "jotai/vanilla";
+import { describe, expect, it } from "vitest";
+import { useExtensionsVm } from "./useExtensionsVm";
 
-class MemoryStorage {
-  #items = new Map<string, string>()
+class MemoryKeyValue implements KeyValuePort {
+  #items = new Map<string, string>();
 
-  getItem(key: string): string | null {
-    return this.#items.get(key) ?? null
+  async get(key: string): Promise<string | null> {
+    return this.#items.get(key) ?? null;
   }
 
-  setItem(key: string, value: string): void {
-    this.#items.set(key, value)
+  async set(key: string, value: string): Promise<void> {
+    this.#items.set(key, value);
   }
 
   peek(key: string): string | null {
-    return this.#items.get(key) ?? null
+    return this.#items.get(key) ?? null;
   }
 }
 
-const EXTENSIONS_ENABLED_KEY = "kumix.extensions.enabled.v1"
+const EXTENSIONS_ENABLED_KEY = "kumix.extensions.enabled.v1";
 
-const getExtensionsStub = () => ({
+const getExtensionsStub = (): { ui: BundledUiExtension[]; proc: BundledProcExtension[] } => ({
   ui: [
     {
-      kind: "ui" as const,
-      manifest: { id: "github-panel", name: "GitHub Panel", version: "0.1.0", capabilities: ["unfurl"] as const },
-      html: "<!doctype html><html><body>stub</body></html>"
-    }
+      kind: "ui",
+      manifest: {
+        id: "github-panel",
+        name: "GitHub Panel",
+        version: "0.0.1",
+        capabilities: ["unfurl"],
+      },
+      html: "<!doctype html><html><body>stub</body></html>",
+    },
   ],
-  proc: []
-})
+  proc: [],
+});
 
-function Harness(props: { storage: MemoryStorage }) {
-  const vm = useExtensionsVm({ getExtensions: getExtensionsStub as any, storage: props.storage as any })
+function Harness(props: { keyValue: MemoryKeyValue }) {
+  const vm = useExtensionsVm({
+    getExtensions: getExtensionsStub,
+    keyValue: props.keyValue,
+  });
   return (
     <div>
       <div data-testid="enabled">{vm.state.enabledKeys.join(",")}</div>
@@ -45,50 +55,49 @@ function Harness(props: { storage: MemoryStorage }) {
         enable
       </button>
     </div>
-  )
+  );
 }
 
 describe("useExtensionsVm", () => {
   it("initializes enabled keys from registry on first run", async () => {
-    const storage = new MemoryStorage()
-    const store = createStore()
+    const keyValue = new MemoryKeyValue();
+    const store = createStore();
 
     render(
       <JotaiProvider store={store}>
-        <Harness storage={storage} />
-      </JotaiProvider>
-    )
+        <Harness keyValue={keyValue} />
+      </JotaiProvider>,
+    );
 
     await waitFor(() => {
-      expect(screen.getByTestId("enabled").textContent).toBe("ui:github-panel")
-    })
+      expect(screen.getByTestId("enabled").textContent).toBe("ui:github-panel");
+    });
 
-    expect(storage.peek(EXTENSIONS_ENABLED_KEY)).toBe(JSON.stringify(["ui:github-panel"]))
-  })
+    expect(keyValue.peek(EXTENSIONS_ENABLED_KEY)).toBe(JSON.stringify(["ui:github-panel"]));
+  });
 
   it("toggles enable/disable", async () => {
-    const storage = new MemoryStorage()
-    const store = createStore()
+    const keyValue = new MemoryKeyValue();
+    const store = createStore();
 
     render(
       <JotaiProvider store={store}>
-        <Harness storage={storage} />
-      </JotaiProvider>
-    )
+        <Harness keyValue={keyValue} />
+      </JotaiProvider>,
+    );
 
     await waitFor(() => {
-      expect(screen.getByTestId("enabled").textContent).toBe("ui:github-panel")
-    })
+      expect(screen.getByTestId("enabled").textContent).toBe("ui:github-panel");
+    });
 
-    fireEvent.click(screen.getByRole("button", { name: "disable" }))
+    fireEvent.click(screen.getByRole("button", { name: "disable" }));
     await waitFor(() => {
-      expect(screen.getByTestId("enabled").textContent).toBe("")
-    })
+      expect(screen.getByTestId("enabled").textContent).toBe("");
+    });
 
-    fireEvent.click(screen.getByRole("button", { name: "enable" }))
+    fireEvent.click(screen.getByRole("button", { name: "enable" }));
     await waitFor(() => {
-      expect(screen.getByTestId("enabled").textContent).toBe("ui:github-panel")
-    })
-  })
-})
-
+      expect(screen.getByTestId("enabled").textContent).toBe("ui:github-panel");
+    });
+  });
+});

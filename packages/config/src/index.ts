@@ -1,8 +1,7 @@
 export type RuntimeConfig = {
-  homeserverUrl: string
-}
+  homeserverUrl: string;
+};
 
 export function defaultRuntimeConfig(): RuntimeConfig {
-  return { homeserverUrl: "https://example.com" }
+  return { homeserverUrl: "https://example.com" };
 }
-
