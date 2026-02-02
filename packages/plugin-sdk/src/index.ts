@@ -9,3 +9,4 @@ export type PluginToHostMessage =
   | { type: "render.result"; id: string; html: string }
   | { type: "error"; id: string; message: string }
 
+export * from "./wasm"

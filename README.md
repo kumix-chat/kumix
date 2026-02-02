@@ -48,7 +48,7 @@ Desktop uses the same UI as web and demonstrates IPC by invoking `greet` from Ru
 - Routing: TanStack Router (shared in `packages/client-ui`)
 - Data: TanStack Query + Table + Virtual (demo at `/data`)
 - Styling: Tailwind CSS
-- State: Jotai + Zustand (demo in the Home page)
+- State: Jotai (demo in the Home page)
 - i18n: LinguiJS (demo: switch language in header)
 - UI: `packages/ui` is the shared component layer (IntentUI-style; safe place to vendor IntentUI components)
 
@@ -58,6 +58,7 @@ Open `/extensions` to see bundled extension demos:
 
 - UI extensions (`extensions/ui/*`): sandboxed iframes (postMessage)
 - Proc extensions (`extensions/proc/*`): Web Workers (request/response)
+- Enable/disable is demoed in-app (stored in localStorage)
 
 ## IntentUI
 

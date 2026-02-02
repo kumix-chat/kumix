@@ -6,9 +6,12 @@ type Pending = {
   timeoutId: number
 }
 
+export type ProcRenderFormat = "markdown" | "mermaid"
+
 export type ProcWorkerClient = {
   ping(): Promise<void>
   renderMarkdown(source: string): Promise<string>
+  renderMermaid(source: string): Promise<string>
   dispose(): void
 }
 
@@ -70,13 +73,20 @@ export function createProcWorkerClient(worker: Worker, options: { timeoutMs?: nu
     })
   }
 
+  async function render(format: ProcRenderFormat, source: string): Promise<string> {
+    const html = await request({ type: "render", id: nextId(), format, source })
+    return String(html)
+  }
+
   return {
     async ping() {
       await request({ type: "ping", id: nextId() })
     },
     async renderMarkdown(source) {
-      const html = await request({ type: "render", id: nextId(), format: "markdown", source })
-      return String(html)
+      return render("markdown", source)
+    },
+    async renderMermaid(source) {
+      return render("mermaid", source)
     },
     dispose() {
       worker.removeEventListener("message", onMessage as any)
@@ -85,4 +95,3 @@ export function createProcWorkerClient(worker: Worker, options: { timeoutMs?: nu
     }
   }
 }
-

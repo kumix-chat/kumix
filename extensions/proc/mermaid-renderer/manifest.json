@@ -1,0 +1,7 @@
+{
+  "id": "mermaid-renderer",
+  "name": "Mermaid Renderer",
+  "version": "0.1.0",
+  "capabilities": ["render.mermaid"],
+  "timeoutMs": 5000
+}

@@ -1,0 +1,34 @@
+import { Trans } from "@lingui/react/macro"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@kumix/ui"
+
+export function AboutPage() {
+  return (
+    <section className="grid gap-4">
+      <Card>
+        <CardHeader>
+          <CardTitle>
+            <Trans id="about.title">About</Trans>
+          </CardTitle>
+          <CardDescription>
+            <Trans id="about.description">
+              Put feature slices under <code>packages/client-ui/src/features</code> and keep apps thin.
+            </Trans>
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="text-sm text-slate-200">
+          <ul className="list-disc pl-5">
+            <li>
+              UI: <code>packages/client-ui</code> + <code>packages/ui</code>
+            </li>
+            <li>
+              Core: <code>packages/client-core</code>
+            </li>
+            <li>
+              Adapter: <code>packages/matrix-adapter</code>
+            </li>
+          </ul>
+        </CardContent>
+      </Card>
+    </section>
+  )
+}
