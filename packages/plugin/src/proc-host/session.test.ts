@@ -79,8 +79,9 @@ describe("createProcExtensionSession", () => {
       capabilities: ["render.markdown"],
     });
 
+    const assertion = expect(session.ready).rejects.toThrow("timed out");
     await vi.advanceTimersByTimeAsync(20);
-    await expect(session.ready).rejects.toThrow("timed out");
+    await assertion;
 
     session.dispose();
     vi.useRealTimers();

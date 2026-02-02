@@ -20,7 +20,7 @@
     "i18n:compile": "lingui compile",
     "lint:rust": "cargo clippy --manifest-path apps/desktop/src-tauri/Cargo.toml --all-targets --all-features -- -D warnings",
     "format:rust": "cargo fmt --manifest-path apps/desktop/src-tauri/Cargo.toml",
-    "test": "vitest",
+    "test": "vitest run",
     "test:run": "vitest run",
     "test:web": "vitest run --project web",
     "test:desktop": "vitest run --project desktop",
@@ -38,7 +38,9 @@
     "@types/react": "^19.2.10",
     "@types/react-dom": "^19.2.3",
     "jsdom": "^28.0.0",
+    "@vitejs/plugin-react": "^5.1.2",
     "vite": "^7.3.1",
+    "vite-tsconfig-paths": "^6.0.5",
     "vitest": "^4.0.18"
   },
   "dependencies": {

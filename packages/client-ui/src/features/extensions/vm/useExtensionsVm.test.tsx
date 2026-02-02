@@ -1,9 +1,9 @@
 import type { KeyValuePort } from "@kumix/client-core";
 import type { BundledProcExtension, BundledUiExtension } from "@kumix/plugin";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { Provider as JotaiProvider } from "jotai";
 import { createStore } from "jotai/vanilla";
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it } from "vitest";
 import { useExtensionsVm } from "./useExtensionsVm";
 
 class MemoryKeyValue implements KeyValuePort {
@@ -59,6 +59,10 @@ function Harness(props: { keyValue: MemoryKeyValue }) {
 }
 
 describe("useExtensionsVm", () => {
+  afterEach(() => {
+    cleanup();
+  });
+
   it("initializes enabled keys from registry on first run", async () => {
     const keyValue = new MemoryKeyValue();
     const store = createStore();

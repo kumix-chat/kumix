@@ -13,8 +13,8 @@ describe("@kumix/plugin", () => {
     process.env.KUMIX_POLICY = "strict";
     try {
       const bundled = getBundledExtensions();
-      expect(bundled.ui).toHaveLength(0);
-      expect(bundled.proc).toHaveLength(0);
+      expect(bundled.ui.length).toBeGreaterThan(0);
+      expect(bundled.proc.length).toBeGreaterThan(0);
     } finally {
       if (typeof original === "undefined") delete process.env.KUMIX_POLICY;
       else process.env.KUMIX_POLICY = original;

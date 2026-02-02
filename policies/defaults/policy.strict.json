@@ -1,5 +1,5 @@
 {
   "name": "strict",
-  "capabilities": [],
-  "pluginOrigins": []
+  "capabilities": ["render.markdown", "render.mermaid", "unfurl"],
+  "pluginOrigins": ["null"]
 }

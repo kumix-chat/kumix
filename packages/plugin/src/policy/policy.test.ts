@@ -25,7 +25,12 @@ describe("policy", () => {
 
   it("checks capability allowlist", () => {
     const strict = getBundledPolicy("strict");
-    expect(areCapabilitiesAllowed(strict, ["render.markdown"])).toBe(false);
+    expect(areCapabilitiesAllowed(strict, ["render.markdown"])).toBe(true);
+    expect(areCapabilitiesAllowed(strict, ["render.mermaid"])).toBe(true);
+    expect(areCapabilitiesAllowed(strict, ["unfurl"])).toBe(true);
+
+    const markdownOnly = { name: "strict", capabilities: ["render.markdown"], pluginOrigins: [] };
+    expect(areCapabilitiesAllowed(markdownOnly, ["render.mermaid"])).toBe(false);
 
     const dev = getBundledPolicy("dev");
     expect(areCapabilitiesAllowed(dev, ["render.markdown"])).toBe(true);

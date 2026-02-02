@@ -34,3 +34,10 @@ Rule of thumb: Views should not import atoms directly. Views call `useXxxVm()` a
 
 Apps should wrap the router with `KumixAppProviders` (QueryClient + I18n + Jotai store) and avoid duplicating
 provider wiring per app.
+
+## Matrix boundary
+
+- UI must not depend on `matrix-js-sdk` directly.
+- `packages/client-core/src/ports/matrix.ts` defines the contract used by VMs.
+- `packages/matrix-adapter` implements that contract and is injected via `KumixMatrixAdapterProvider`, so tests can swap
+  in a mock adapter without touching UI code.

@@ -44,11 +44,23 @@ Bundled policies live in `policies/defaults/` and are applied by `@kumix/plugin`
 - Select policy via `VITE_KUMIX_POLICY=dev|strict` (fallback: `development`/`test` => `dev`, otherwise `strict`)
 - Extensions whose declared `capabilities` are not allowed by the active policy are filtered out of the registry
 - UI extensions are loaded via `srcDoc` with `origin="null"`, so `pluginOrigins` must include `*` or `null` to allow them
+- `policy.strict.json` is intended to be "usable by default": only a small allowlist is enabled (MVP: markdown/mermaid + demo UI)
 
 ## Messaging
 
 - UI: iframe `postMessage` ping/pong demo using a host-injected bootstrap (`__KUMIX_UI_BOOTSTRAP__`)
 - Proc: request/response over worker `postMessage` (`ping`, `render.*`)
+
+VMs should treat `@kumix/plugin` as the only entry point and use the host APIs:
+
+- `createSrcDocUiExtensionIntegration(extension)` (bootstrap + bridge)
+- `createProcSessionForExtension(extension)` (worker session + policy enforcement)
+
+### `srcDoc` targetOrigin
+
+`srcDoc` iframes always use `origin="null"`. For the ping/pong handshake, the host replies with `postMessage(..., "*")`
+and relies on `event.source` + token validation. If/when we support URL-based iframe extensions, the host can switch to a
+strict `targetOrigin` derived from manifest/policy.
 
 ## WASM
 

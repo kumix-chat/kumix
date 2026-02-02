@@ -87,8 +87,9 @@ describe("createProcWorkerClient", () => {
     const client = createProcWorkerClient(worker as unknown as Worker, { timeoutMs: 10 });
 
     const promise = client.ping();
+    const assertion = expect(promise).rejects.toThrow("timed out");
     await vi.advanceTimersByTimeAsync(20);
-    await expect(promise).rejects.toThrow("timed out");
+    await assertion;
 
     client.dispose();
     vi.useRealTimers();

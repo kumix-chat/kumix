@@ -1,10 +1,10 @@
 import type { KeyValuePort } from "@kumix/client-core";
 import {
-  createProcExtensionSession,
-  createSrcDocUiPingPongBridge,
-  createUiToken,
+  createProcSessionForExtension,
+  createSrcDocUiExtensionIntegration,
   getBundledExtensions,
-  injectKumixUiBootstrap,
+  type ProcExtensionSession,
+  type SrcDocUiExtensionIntegration,
 } from "@kumix/plugin";
 import { useAtomValue, useSetAtom } from "jotai";
 import type { RefObject } from "react";
@@ -164,16 +164,12 @@ export function useExtensionsVm(options: ExtensionsVmOptions = {}): ExtensionsVm
     [enabledProc, selectedProcId],
   );
 
-  const uiToken = useMemo(() => (selectedUiId ? createUiToken() : ""), [selectedUiId]);
-  const selectedUiSrcDoc = useMemo(() => {
-    if (!selectedUi) return "";
-    const hostOrigin = typeof window !== "undefined" ? window.location.origin : "";
-    return injectKumixUiBootstrap(selectedUi.html, {
-      extensionId: selectedUi.manifest.id,
-      token: uiToken,
-      hostOrigin,
-    });
-  }, [selectedUi, uiToken]);
+  const uiIntegration: SrcDocUiExtensionIntegration | null = useMemo(() => {
+    if (!selectedUi) return null;
+    return createSrcDocUiExtensionIntegration(selectedUi);
+  }, [selectedUi]);
+
+  const selectedUiSrcDoc = uiIntegration?.srcDoc ?? "";
 
   const procFormat: ProcFormat = useMemo(() => {
     const caps = selectedProc?.manifest.capabilities ?? [];
@@ -193,15 +189,12 @@ export function useExtensionsVm(options: ExtensionsVmOptions = {}): ExtensionsVm
 
   const iframeRef = useRef<HTMLIFrameElement>(null);
   useEffect(() => {
-    if (!uiToken) return;
-    const bridge = createSrcDocUiPingPongBridge({
-      token: uiToken,
-      getContentWindow: () => iframeRef.current?.contentWindow ?? null,
-    });
+    if (!uiIntegration) return;
+    const bridge = uiIntegration.attach(() => iframeRef.current?.contentWindow ?? null);
     return () => bridge.dispose();
-  }, [uiToken]);
+  }, [uiIntegration]);
 
-  const procSessionRef = useRef<ReturnType<typeof createProcExtensionSession> | null>(null);
+  const procSessionRef = useRef<ProcExtensionSession | null>(null);
   useEffect(() => {
     setRenderedHtml("");
     procSessionRef.current?.dispose();
@@ -212,10 +205,7 @@ export function useExtensionsVm(options: ExtensionsVmOptions = {}): ExtensionsVm
       return;
     }
 
-    const session = createProcExtensionSession(selectedProc.createWorker, {
-      timeoutMs: selectedProc.manifest.timeoutMs,
-      capabilities: selectedProc.manifest.capabilities,
-    });
+    const session = createProcSessionForExtension(selectedProc);
     procSessionRef.current = session;
     let cancelled = false;
 

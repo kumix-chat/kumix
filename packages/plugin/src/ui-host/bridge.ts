@@ -39,6 +39,11 @@ export function createSrcDocUiPingPongBridge(options: {
     if (!isPingMessage(event.data)) return;
     if (event.data.token !== options.token) return;
 
+    // NOTE: For `srcDoc` iframes the origin is always `"null"`, and `postMessage` cannot be restricted
+    // to a concrete origin in a portable way. We rely on:
+    // - `event.source` matching the iframe window
+    // - strict origin check (`"null"`)
+    // - a per-instance token handshake
     win.postMessage(
       { type: "kumix.pong", id: event.data.id, token: options.token } satisfies KumixUiPongMessage,
       "*",

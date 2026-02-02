@@ -8,11 +8,11 @@ describe("apps/web", () => {
 
     render(<App />);
 
-    await screen.findByRole("heading", { name: "Home" });
+    await screen.findByRole("link", { name: "Home" });
 
     const language = screen.getByRole("combobox", { name: "Language" });
     fireEvent.change(language, { target: { value: "ja" } });
 
-    await screen.findByRole("heading", { name: "ホーム" });
+    await screen.findByRole("link", { name: "ホーム" });
   });
 });
