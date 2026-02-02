@@ -62,6 +62,14 @@ VMs should treat `@kumix/plugin` as the only entry point and use the host APIs:
 and relies on `event.source` + token validation. If/when we support URL-based iframe extensions, the host can switch to a
 strict `targetOrigin` derived from manifest/policy.
 
+### `srcDoc` sandbox
+
+UI extensions are loaded as sandboxed iframes. The current baseline sandbox attribute is:
+
+- `allow-scripts allow-forms allow-modals allow-popups allow-downloads`
+
+`allow-same-origin` is intentionally omitted to keep `origin="null"` for `srcDoc`.
+
 ## WASM
 
 Proc extensions can use WASM inside the worker. This repo provides a helper in `@kumix/plugin-sdk`:

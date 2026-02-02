@@ -41,3 +41,5 @@ provider wiring per app.
 - `packages/client-core/src/ports/matrix.ts` defines the contract used by VMs.
 - `packages/matrix-adapter` implements that contract and is injected via `KumixMatrixAdapterProvider`, so tests can swap
   in a mock adapter without touching UI code.
+- The contract includes a small event subscription API (`client.subscribe(...)`) so UI state updates have a single
+  boundary and don't leak SDK types.

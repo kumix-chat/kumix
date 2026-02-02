@@ -8,7 +8,7 @@ import {
 } from "@kumix/plugin";
 import { useAtomValue, useSetAtom } from "jotai";
 import type { RefObject } from "react";
-import { useCallback, useEffect, useMemo, useRef } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useKumixKeyValue } from "../../../app/ports/KeyValueProvider";
 import {
   extensionsEnabledKeysAtom,
@@ -18,8 +18,9 @@ import {
   extensionsRenderedHtmlAtom,
   extensionsSelectedProcIdAtom,
   extensionsSelectedUiIdAtom,
+  extensionsUiStateAtom,
 } from "../state/extensions.atoms";
-import type { ExtensionKey, ProcFormat, ProcState } from "../state/extensions.types";
+import type { ExtensionKey, ProcFormat, ProcState, UiState } from "../state/extensions.types";
 
 const EXTENSIONS_ENABLED_KEY = "kumix.extensions.enabled.v1";
 
@@ -57,11 +58,13 @@ export type ExtensionsVm = {
     selectedProcId: string;
     selectedUi: ReturnType<typeof getBundledExtensions>["ui"][number] | null;
     selectedUiSrcDoc: string;
+    selectedUiIframe: { sandbox: string; referrerPolicy: ReferrerPolicy } | null;
     selectedProc: ReturnType<typeof getBundledExtensions>["proc"][number] | null;
     procFormat: ProcFormat;
     editorValue: string;
     renderedHtml: string;
     procState: ProcState;
+    uiState: UiState;
   };
   actions: {
     setEnabled(key: ExtensionKey, enabled: boolean): void;
@@ -164,12 +167,29 @@ export function useExtensionsVm(options: ExtensionsVmOptions = {}): ExtensionsVm
     [enabledProc, selectedProcId],
   );
 
-  const uiIntegration: SrcDocUiExtensionIntegration | null = useMemo(() => {
-    if (!selectedUi) return null;
-    return createSrcDocUiExtensionIntegration(selectedUi);
-  }, [selectedUi]);
+  const [uiIntegration, setUiIntegration] = useState<SrcDocUiExtensionIntegration | null>(null);
+  const uiState = useAtomValue(extensionsUiStateAtom);
+  const setUiState = useSetAtom(extensionsUiStateAtom);
+
+  useEffect(() => {
+    setUiIntegration(null);
+    setUiState({ kind: "idle" });
+
+    if (!selectedUi) return;
+    try {
+      const integration = createSrcDocUiExtensionIntegration(selectedUi);
+      setUiIntegration(integration);
+      setUiState({ kind: "ready" });
+    } catch (error) {
+      setUiState({
+        kind: "error",
+        message: error instanceof Error ? error.message : String(error),
+      });
+    }
+  }, [selectedUi, setUiState]);
 
   const selectedUiSrcDoc = uiIntegration?.srcDoc ?? "";
+  const selectedUiIframe = uiIntegration?.iframe ?? null;
 
   const procFormat: ProcFormat = useMemo(() => {
     const caps = selectedProc?.manifest.capabilities ?? [];
@@ -281,11 +301,13 @@ export function useExtensionsVm(options: ExtensionsVmOptions = {}): ExtensionsVm
       selectedProcId,
       selectedUi,
       selectedUiSrcDoc,
+      selectedUiIframe,
       selectedProc,
       procFormat,
       editorValue,
       renderedHtml,
       procState,
+      uiState,
     },
     actions: {
       setEnabled,

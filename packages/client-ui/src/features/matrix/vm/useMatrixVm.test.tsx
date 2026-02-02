@@ -1,4 +1,4 @@
-import type { MatrixAdapterPort } from "@kumix/client-core";
+import type { MatrixAdapterPort, MatrixClientEvent } from "@kumix/client-core";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { Provider as JotaiProvider } from "jotai";
 import { createStore } from "jotai/vanilla";
@@ -8,7 +8,12 @@ import { useMatrixVm } from "./useMatrixVm";
 
 const matrixAdapterStub: MatrixAdapterPort = {
   createClient() {
+    const listeners = new Set<(event: MatrixClientEvent) => void>();
     return {
+      subscribe(handler) {
+        listeners.add(handler);
+        return () => listeners.delete(handler);
+      },
       async startSync() {},
       async stopSync() {},
     };

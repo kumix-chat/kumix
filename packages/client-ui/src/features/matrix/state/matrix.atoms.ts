@@ -10,3 +10,6 @@ export type MatrixSyncState =
 export const matrixHomeserverUrlAtom = atom<string>(defaultRuntimeConfig().homeserverUrl);
 export const matrixAccessTokenAtom = atom<string>("");
 export const matrixSyncStateAtom = atom<MatrixSyncState>({ kind: "stopped" });
+
+export const matrixEventCountAtom = atom<number>(0);
+export const matrixLastEventAtom = atom<string>("");

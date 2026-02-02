@@ -6,6 +6,10 @@ import { injectKumixUiBootstrap } from "./srcdoc";
 export type SrcDocUiExtensionIntegration = {
   token: string;
   srcDoc: string;
+  iframe: {
+    sandbox: string;
+    referrerPolicy: ReferrerPolicy;
+  };
   attach(getContentWindow: () => Window | null): { dispose(): void };
 };
 
@@ -34,6 +38,18 @@ export function createSrcDocUiExtensionIntegration(
   return {
     token,
     srcDoc,
+    iframe: {
+      // allow-same-origin is intentionally omitted so the iframe stays on origin "null" for srcDoc.
+      // This is a conservative default; capabilities should still be enforced at the host boundary.
+      sandbox: [
+        "allow-scripts",
+        "allow-forms",
+        "allow-modals",
+        "allow-popups",
+        "allow-downloads",
+      ].join(" "),
+      referrerPolicy: "no-referrer",
+    },
     attach(getContentWindow) {
       return createSrcDocUiPingPongBridge({ token, getContentWindow });
     },

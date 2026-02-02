@@ -145,10 +145,16 @@ export function ExtensionsPage() {
                   {vm.state.selectedUi.manifest.id} / v{vm.state.selectedUi.manifest.version} /{" "}
                   {vm.state.selectedUi.manifest.capabilities.join(", ")}
                 </div>
+                {vm.state.uiState.kind === "error" ? (
+                  <Alert variant="destructive">
+                    <AlertDescription>{vm.state.uiState.message}</AlertDescription>
+                  </Alert>
+                ) : null}
                 <iframe
                   ref={vm.refs.iframeRef}
                   title={vm.state.selectedUi.manifest.name}
-                  sandbox="allow-scripts"
+                  sandbox={vm.state.selectedUiIframe?.sandbox}
+                  referrerPolicy={vm.state.selectedUiIframe?.referrerPolicy}
                   srcDoc={vm.state.selectedUiSrcDoc}
                   className="h-[320px] w-full rounded-xl border border-white/10 bg-slate-950"
                 />

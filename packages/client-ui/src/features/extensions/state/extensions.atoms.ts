@@ -1,5 +1,5 @@
 import { atom } from "jotai";
-import type { ExtensionKey, ProcState } from "./extensions.types";
+import type { ExtensionKey, ProcState, UiState } from "./extensions.types";
 
 export const extensionsEnabledKeysAtom = atom<ExtensionKey[] | null>(null);
 export const extensionsSelectedUiIdAtom = atom<string>("");
@@ -14,3 +14,4 @@ export const extensionsMermaidSourceAtom = atom<string>(
 
 export const extensionsRenderedHtmlAtom = atom<string>("");
 export const extensionsProcStateAtom = atom<ProcState>({ kind: "idle" });
+export const extensionsUiStateAtom = atom<UiState>({ kind: "idle" });
