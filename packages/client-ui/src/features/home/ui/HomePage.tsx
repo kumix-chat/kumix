@@ -31,7 +31,7 @@ export function HomePage(props: { right?: ReactNode }) {
             {props.right}
           </div>
           {vm.state.showMessage ? (
-            <div className="text-xs text-slate-200">
+            <div className="text-xs text-[color:var(--muted-fg)]">
               <Trans id="home.message.hello">Hello from kumix</Trans>
             </div>
           ) : null}

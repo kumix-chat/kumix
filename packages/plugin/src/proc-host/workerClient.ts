@@ -1,4 +1,4 @@
-import type { HostToPluginMessage, PluginToHostMessage } from "@kumix/plugin-sdk";
+import type { HostToPluginMessage, PluginToHostMessage, ThemeTokens } from "@kumix/plugin-sdk";
 
 type Pending<T> = {
   resolve(value: T): void;
@@ -12,6 +12,7 @@ export type ProcWorkerClient = {
   ping(): Promise<void>;
   renderMarkdown(source: string): Promise<string>;
   renderMermaid(source: string): Promise<string>;
+  getThemeTokens(): Promise<ThemeTokens>;
   dispose(): void;
 };
 
@@ -61,6 +62,14 @@ export function createProcWorkerClient(
       return;
     }
 
+    if (message.type === "theme.tokens.result") {
+      const pending = pendingById.get(message.id);
+      if (!pending) return;
+      clearPending(message.id);
+      pending.resolve(message.tokens);
+      return;
+    }
+
     if (message.type === "error") {
       const pending = pendingById.get(message.id);
       if (!pending) return;
@@ -102,6 +111,9 @@ export function createProcWorkerClient(
     },
     async renderMermaid(source) {
       return render("mermaid", source);
+    },
+    async getThemeTokens() {
+      return request<ThemeTokens>({ type: "theme.tokens.get", id: nextId() });
     },
     dispose() {
       worker.removeEventListener("message", onMessage);

@@ -1,5 +1,5 @@
 {
   "name": "strict",
-  "capabilities": ["render.markdown", "render.mermaid", "unfurl"],
+  "capabilities": ["render.markdown", "render.mermaid", "unfurl", "theme.tokens.provide"],
   "pluginOrigins": ["null"]
 }

@@ -1,11 +1,13 @@
 import type { PluginCapability } from "@kumix/plugin-sdk";
 import { areCapabilitiesAllowed, getActivePolicy, type KumixPolicy } from "../policy/policy";
+import { validateThemeTokens } from "../theme/themeTokens";
 import { createProcWorkerClient } from "./workerClient";
 
 export type ProcExtensionSession = {
   ready: Promise<void>;
   renderMarkdown(source: string): Promise<string>;
   renderMermaid(source: string): Promise<string>;
+  getThemeTokens(): Promise<ReturnType<typeof validateThemeTokens>>;
   dispose(): void;
 };
 
@@ -56,6 +58,11 @@ export function createProcExtensionSession(
     async renderMermaid(source) {
       ensureCapability("render.mermaid");
       return call(() => client.renderMermaid(source));
+    },
+    async getThemeTokens() {
+      ensureCapability("theme.tokens.provide");
+      const tokens = await call(() => client.getThemeTokens());
+      return validateThemeTokens(tokens);
     },
     dispose() {
       if (disposed) return;

@@ -1,8 +1,10 @@
+@import "tailwindcss";
+@config "../tailwind.config.ts";
 @plugin "tailwindcss-react-aria-components";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@source "../index.html";
+@source "./**/*.{ts,tsx}";
+@source "../../../packages/**/*.{ts,tsx}";
 
 @layer base {
   html,
@@ -12,17 +14,11 @@
   }
 
   body {
-    @apply bg-slate-950 text-slate-50;
     background-color: var(--bg);
     color: var(--fg);
   }
-
-  a {
-    @apply text-sky-300 hover:text-sky-200;
-  }
-
   code {
-    @apply font-mono text-[0.95em] text-slate-200;
+    font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
   }
   .theme {
     --font-sans:

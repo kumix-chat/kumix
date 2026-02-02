@@ -8,7 +8,7 @@ export type AlertProps = HTMLAttributes<HTMLDivElement> & {
 export function Alert({ variant = "default", className, ...props }: AlertProps) {
   const base = "relative w-full rounded-xl border p-4";
   const variants = {
-    default: "border-white/10 bg-white/[0.03] text-slate-50",
+    default: "border-[color:var(--border)] bg-[var(--overlay)] text-[color:var(--overlay-fg)]",
     destructive: "border-red-500/30 bg-red-500/10 text-red-100",
   } as const;
 

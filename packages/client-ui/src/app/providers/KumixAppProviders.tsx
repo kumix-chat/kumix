@@ -8,6 +8,8 @@ import type { SupportedLocale } from "../../i18n/i18n";
 import { I18nAppProvider } from "../I18nAppProvider";
 import { KumixKeyValueProvider } from "../ports/KeyValueProvider";
 import { KumixMatrixAdapterProvider } from "../ports/MatrixProvider";
+import { ExtensionEnablementProvider } from "./ExtensionEnablementProvider";
+import { ThemeProvider } from "./ThemeProvider";
 
 export type KumixAppProvidersProps = {
   children: ReactNode;
@@ -27,7 +29,13 @@ export function KumixAppProviders(props: KumixAppProvidersProps) {
       <KumixMatrixAdapterProvider value={props.matrixAdapter}>
         <JotaiProvider store={store}>
           <QueryClientProvider client={queryClient}>
-            <I18nAppProvider initialLocale={props.initialLocale}>{props.children}</I18nAppProvider>
+            <ExtensionEnablementProvider>
+              <ThemeProvider>
+                <I18nAppProvider initialLocale={props.initialLocale}>
+                  {props.children}
+                </I18nAppProvider>
+              </ThemeProvider>
+            </ExtensionEnablementProvider>
           </QueryClientProvider>
         </JotaiProvider>
       </KumixMatrixAdapterProvider>

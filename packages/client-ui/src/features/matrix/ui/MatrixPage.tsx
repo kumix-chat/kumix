@@ -31,7 +31,7 @@ export function MatrixPage() {
         </CardHeader>
         <CardContent className="grid gap-3">
           <div className="grid gap-2">
-            <div className="text-xs font-semibold text-slate-200">
+            <div className="text-xs font-semibold text-[color:var(--fg)]">
               <Trans id="matrix.homeserver">Homeserver URL</Trans>
             </div>
             <Input
@@ -41,7 +41,7 @@ export function MatrixPage() {
           </div>
 
           <div className="grid gap-2">
-            <div className="text-xs font-semibold text-slate-200">
+            <div className="text-xs font-semibold text-[color:var(--fg)]">
               <Trans id="matrix.accessToken">Access token (demo)</Trans>
             </div>
             <Input
@@ -58,7 +58,7 @@ export function MatrixPage() {
             <Button intent="outline" onPress={() => void vm.actions.stop()} isDisabled={!running}>
               <Trans id="matrix.stop">Stop sync</Trans>
             </Button>
-            <div className="text-sm text-slate-200">
+            <div className="text-sm text-[color:var(--muted-fg)]">
               <Trans id="matrix.state">State:</Trans> {vm.state.syncState.kind}
             </div>
           </div>

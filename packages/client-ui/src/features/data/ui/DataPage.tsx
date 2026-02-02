@@ -69,7 +69,7 @@ export function DataPage() {
 
       {vm.state.isLoading ? (
         <Card>
-          <CardContent className="p-4 text-sm text-slate-200">
+          <CardContent className="p-4 text-sm text-[color:var(--muted-fg)]">
             <Trans id="data.loading">Loading...</Trans>
           </CardContent>
         </Card>
@@ -82,16 +82,18 @@ export function DataPage() {
         </Alert>
       ) : (
         <div className="grid gap-2">
-          <div className="text-xs text-slate-400">
+          <div className="text-xs text-[color:var(--muted-fg)] opacity-80">
             <Trans id="data.label.rows">Rows:</Trans>{" "}
-            <span className="text-slate-200">{vm.state.rowsCount.toLocaleString()}</span>
+            <span className="text-[color:var(--muted-fg)] opacity-100">
+              {vm.state.rowsCount.toLocaleString()}
+            </span>
           </div>
 
           <div
             ref={vm.refs.scrollRef}
-            className="h-[560px] overflow-auto rounded-xl border border-white/10 bg-slate-950"
+            className="h-[560px] overflow-auto rounded-xl border border-[color:var(--border)] bg-[var(--overlay)]"
           >
-            <div className="sticky top-0 z-10 grid grid-cols-[80px_1fr_160px_140px_140px] items-center border-b border-white/10 bg-slate-950/95 px-3 text-xs font-semibold text-slate-200 backdrop-blur">
+            <div className="sticky top-0 z-10 grid grid-cols-[80px_1fr_160px_140px_140px] items-center border-b border-[color:var(--border)] bg-[color:var(--overlay)]/95 px-3 text-xs font-semibold text-[color:var(--fg)] backdrop-blur">
               {table.getHeaderGroups().map((headerGroup) =>
                 headerGroup.headers.map((header) => {
                   const sortable = header.column.getCanSort();
@@ -109,7 +111,9 @@ export function DataPage() {
                       onPress={sortable ? () => header.column.toggleSorting() : undefined}
                     >
                       <span>{flexRender(header.column.columnDef.header, header.getContext())}</span>
-                      <span className="text-slate-400">{sortIndicator(sort)}</span>
+                      <span className="text-[color:var(--muted-fg)] opacity-70">
+                        {sortIndicator(sort)}
+                      </span>
                     </Button>
                   );
                 }),
@@ -125,8 +129,10 @@ export function DataPage() {
                   <div
                     key={row.id}
                     className={cn(
-                      "absolute left-0 top-0 grid w-full grid-cols-[80px_1fr_160px_140px_140px] items-center border-b border-white/5 px-3 text-sm",
-                      virtualRow.index % 2 === 0 ? "bg-white/[0.02]" : "bg-transparent",
+                      "absolute left-0 top-0 grid w-full grid-cols-[80px_1fr_160px_140px_140px] items-center border-b border-[color:var(--border)]/50 px-3 text-sm",
+                      virtualRow.index % 2 === 0
+                        ? "bg-[color:var(--overlay)]/60"
+                        : "bg-transparent",
                     )}
                     style={{
                       height: `${virtualRow.size}px`,

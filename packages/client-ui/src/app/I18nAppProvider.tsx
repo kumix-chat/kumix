@@ -50,12 +50,12 @@ export function I18nAppProvider(props: { children: ReactNode; initialLocale?: Su
 
   if (!ready) {
     return (
-      <div className="grid min-h-screen place-items-center bg-slate-950 text-slate-50">
+      <div className="grid min-h-screen place-items-center bg-[var(--bg)] text-[color:var(--fg)]">
         <Card className="w-[320px]">
           <CardHeader>
             <CardTitle>kumix</CardTitle>
           </CardHeader>
-          <CardContent className="text-sm text-slate-200">Loading...</CardContent>
+          <CardContent className="text-sm text-[color:var(--muted-fg)]">Loading...</CardContent>
         </Card>
       </div>
     );

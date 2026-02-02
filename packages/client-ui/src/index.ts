@@ -2,6 +2,7 @@ export * from "./app/AppShell";
 export * from "./app/I18nAppProvider";
 export * from "./app/LanguageSwitcher";
 export * from "./app/providers/KumixAppProviders";
+export * from "./app/ThemeSwitcher";
 export * from "./features/about/AboutPage";
 export * from "./features/data/DataPage";
 export * from "./features/extensions/ExtensionsPage";

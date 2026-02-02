@@ -30,7 +30,7 @@ export function ExtensionsPage() {
             </Trans>
           </CardDescription>
         </CardHeader>
-        <CardContent className="text-sm text-slate-200">
+        <CardContent className="text-sm text-[color:var(--muted-fg)]">
           <ul className="list-disc pl-5">
             <li>
               UI: <code>extensions/ui</code> (sandboxed iframe apps)
@@ -51,9 +51,9 @@ export function ExtensionsPage() {
         </CardHeader>
         <CardContent className="grid gap-4 lg:grid-cols-2">
           <div className="grid gap-2">
-            <div className="text-xs font-semibold text-slate-200">UI</div>
+            <div className="text-xs font-semibold text-[color:var(--fg)]">UI</div>
             {vm.state.ui.length === 0 ? (
-              <div className="text-sm text-slate-200">No UI extensions found.</div>
+              <div className="text-sm text-[color:var(--muted-fg)]">No UI extensions found.</div>
             ) : (
               <div className="grid gap-2">
                 {vm.state.ui.map((ext) => {
@@ -62,7 +62,7 @@ export function ExtensionsPage() {
                   return (
                     <div
                       key={ext.manifest.id}
-                      className="flex items-start gap-2 text-sm text-slate-200"
+                      className="flex items-start gap-2 text-sm text-[color:var(--muted-fg)]"
                     >
                       <Checkbox
                         checked={vm.state.enabledKeys.includes(key)}
@@ -70,8 +70,8 @@ export function ExtensionsPage() {
                         aria-label={label}
                       />
                       <span className="grid">
-                        <span className="text-slate-100">{ext.manifest.name}</span>
-                        <span className="text-xs text-slate-400">
+                        <span className="text-[color:var(--fg)]">{ext.manifest.name}</span>
+                        <span className="text-xs text-[color:var(--muted-fg)] opacity-80">
                           {ext.manifest.id} / {ext.manifest.capabilities.join(", ")}
                         </span>
                       </span>
@@ -83,9 +83,9 @@ export function ExtensionsPage() {
           </div>
 
           <div className="grid gap-2">
-            <div className="text-xs font-semibold text-slate-200">Proc</div>
+            <div className="text-xs font-semibold text-[color:var(--fg)]">Proc</div>
             {vm.state.proc.length === 0 ? (
-              <div className="text-sm text-slate-200">No proc extensions found.</div>
+              <div className="text-sm text-[color:var(--muted-fg)]">No proc extensions found.</div>
             ) : (
               <div className="grid gap-2">
                 {vm.state.proc.map((ext) => {
@@ -94,7 +94,7 @@ export function ExtensionsPage() {
                   return (
                     <div
                       key={ext.manifest.id}
-                      className="flex items-start gap-2 text-sm text-slate-200"
+                      className="flex items-start gap-2 text-sm text-[color:var(--muted-fg)]"
                     >
                       <Checkbox
                         checked={vm.state.enabledKeys.includes(key)}
@@ -102,8 +102,8 @@ export function ExtensionsPage() {
                         aria-label={label}
                       />
                       <span className="grid">
-                        <span className="text-slate-100">{ext.manifest.name}</span>
-                        <span className="text-xs text-slate-400">
+                        <span className="text-[color:var(--fg)]">{ext.manifest.name}</span>
+                        <span className="text-xs text-[color:var(--muted-fg)] opacity-80">
                           {ext.manifest.id} / {ext.manifest.capabilities.join(", ")}
                         </span>
                       </span>
@@ -141,7 +141,7 @@ export function ExtensionsPage() {
                     </option>
                   ))}
                 </Select>
-                <div className="text-xs text-slate-400">
+                <div className="text-xs text-[color:var(--muted-fg)] opacity-80">
                   {vm.state.selectedUi.manifest.id} / v{vm.state.selectedUi.manifest.version} /{" "}
                   {vm.state.selectedUi.manifest.capabilities.join(", ")}
                 </div>
@@ -156,11 +156,11 @@ export function ExtensionsPage() {
                   sandbox={vm.state.selectedUiIframe?.sandbox}
                   referrerPolicy={vm.state.selectedUiIframe?.referrerPolicy}
                   srcDoc={vm.state.selectedUiSrcDoc}
-                  className="h-[320px] w-full rounded-xl border border-white/10 bg-slate-950"
+                  className="h-[320px] w-full rounded-xl border border-[color:var(--border)] bg-[var(--overlay)]"
                 />
               </>
             ) : (
-              <div className="text-sm text-slate-200">No UI extensions enabled.</div>
+              <div className="text-sm text-[color:var(--muted-fg)]">No UI extensions enabled.</div>
             )}
           </CardContent>
         </Card>
@@ -189,7 +189,7 @@ export function ExtensionsPage() {
                         </option>
                       ))}
                     </Select>
-                    <div className="text-xs text-slate-400">
+                    <div className="text-xs text-[color:var(--muted-fg)] opacity-80">
                       {vm.state.selectedProc.manifest.id} / v
                       {vm.state.selectedProc.manifest.version} /{" "}
                       {vm.state.selectedProc.manifest.capabilities.join(", ")}
@@ -213,7 +213,9 @@ export function ExtensionsPage() {
                 />
               </>
             ) : (
-              <div className="text-sm text-slate-200">No proc extensions enabled.</div>
+              <div className="text-sm text-[color:var(--muted-fg)]">
+                No proc extensions enabled.
+              </div>
             )}
 
             {vm.state.procState.kind === "error" ? (
@@ -222,12 +224,12 @@ export function ExtensionsPage() {
               </Alert>
             ) : null}
 
-            <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3">
-              <div className="text-xs font-semibold text-slate-200">
+            <div className="rounded-xl border border-[color:var(--border)] bg-[var(--overlay)] p-3">
+              <div className="text-xs font-semibold text-[color:var(--fg)]">
                 <Trans id="extensions.proc.output">Output</Trans>
               </div>
               <div
-                className="mt-2 grid gap-2 text-sm text-slate-100"
+                className="mt-2 grid gap-2 text-sm text-[color:var(--muted-fg)]"
                 // biome-ignore lint/security/noDangerouslySetInnerHtml: Proc extensions return HTML (demo); production should sanitize/escape per capability.
                 dangerouslySetInnerHTML={{ __html: vm.state.renderedHtml }}
               />

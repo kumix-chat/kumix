@@ -1,0 +1,6 @@
+{
+  "id": "theme-default",
+  "name": "Theme: Default",
+  "version": "0.0.1",
+  "capabilities": ["theme.tokens.provide"]
+}

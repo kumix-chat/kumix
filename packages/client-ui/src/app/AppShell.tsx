@@ -2,9 +2,10 @@ import { appHeaderClass, appMainClass, cn } from "@kumix/ui";
 import { Trans } from "@lingui/react/macro";
 import { Link, Outlet } from "@tanstack/react-router";
 import type { ReactNode } from "react";
+import { ThemeSwitcher } from "./ThemeSwitcher";
 
 export function AppShell(props: { headerRight?: ReactNode }) {
-  const linkBase = "text-sm font-medium text-slate-200 hover:text-white";
+  const linkBase = "text-sm font-medium text-[color:var(--navbar-fg)] opacity-80 hover:opacity-100";
   return (
     <>
       <header className={appHeaderClass}>
@@ -49,8 +50,9 @@ export function AppShell(props: { headerRight?: ReactNode }) {
           </nav>
         </div>
         <div className="flex items-center gap-3">
+          <ThemeSwitcher />
           {props.headerRight}
-          <div className="text-xs text-slate-400">
+          <div className="text-xs opacity-70">
             <Trans id="header.tagline">web / desktop shared UI</Trans>
           </div>
         </div>

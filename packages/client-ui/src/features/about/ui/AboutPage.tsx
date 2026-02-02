@@ -16,7 +16,7 @@ export function AboutPage() {
             </Trans>
           </CardDescription>
         </CardHeader>
-        <CardContent className="text-sm text-slate-200">
+        <CardContent className="text-sm text-[color:var(--muted-fg)]">
           <ul className="list-disc pl-5">
             <li>
               UI: <code>packages/client-ui</code> + <code>packages/ui</code>
