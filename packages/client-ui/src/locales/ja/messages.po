@@ -5,136 +5,214 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ja\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
 
 #. js-lingui-explicit-id
-msgid "nav.home"
-msgstr "ホーム"
-
-#. js-lingui-explicit-id
-msgid "nav.data"
-msgstr "データ"
-
-#. js-lingui-explicit-id
-msgid "nav.extensions"
-msgstr "拡張"
-
-#. js-lingui-explicit-id
-msgid "nav.about"
-msgstr "概要"
-
-#. js-lingui-explicit-id
-msgid "header.tagline"
-msgstr "web / desktop 共通UI"
-
-#. js-lingui-explicit-id
-msgid "home.title"
-msgstr "ホーム"
-
-#. js-lingui-explicit-id
-msgid "home.description"
-msgstr "これは最小構成のモノレポ雛形です。共有パッケージ + TanStack Router + (任意で) Tauri バックエンド。"
-
-#. js-lingui-explicit-id
-msgid "home.button.click"
-msgstr "クリック"
-
-#. js-lingui-explicit-id
-msgid "home.message.hello"
-msgstr "kumix からこんにちは"
-
-#. js-lingui-explicit-id
+#: packages/client-ui/src/features/about/ui/AboutPage.tsx:10
 msgid "about.title"
 msgstr "概要"
 
 #. js-lingui-explicit-id
-msgid "about.description"
-msgstr "機能スライスは packages/client-ui/src/features 配下に置き、apps は薄く保ちます。"
+#: packages/client-ui/src/app/AppShell.tsx:48
+msgid "nav.about"
+msgstr "概要"
 
 #. js-lingui-explicit-id
-msgid "data.title"
-msgstr "データ"
+#: packages/client-ui/src/features/matrix/ui/MatrixPage.tsx:45
+msgid "matrix.accessToken"
+msgstr ""
 
 #. js-lingui-explicit-id
-msgid "data.description"
-msgstr "TanStack Query + Table + Virtual のデモ（5,000行 / ソート / 仮想化）。"
-
-#. js-lingui-explicit-id
-msgid "data.label.rows"
-msgstr "行数:"
-
-#. js-lingui-explicit-id
-msgid "data.loading"
-msgstr "読み込み中..."
-
-#. js-lingui-explicit-id
-msgid "data.error"
-msgstr "データ取得に失敗しました:"
-
-#. js-lingui-explicit-id
-msgid "data.button.clear"
-msgstr "クリア"
-
-#. js-lingui-explicit-id
-msgid "data.button.invalidate"
-msgstr "無効化"
-
-#. js-lingui-explicit-id
-msgid "data.button.refetch"
-msgstr "再取得"
-
-#. js-lingui-explicit-id
-msgid "data.placeholder.filter"
-msgstr "名前/カテゴリでフィルタ..."
-
-#. js-lingui-explicit-id
-msgid "data.column.id"
-msgstr "ID"
-
-#. js-lingui-explicit-id
-msgid "data.column.name"
-msgstr "名前"
-
-#. js-lingui-explicit-id
-msgid "data.column.category"
-msgstr "カテゴリ"
-
-#. js-lingui-explicit-id
-msgid "data.column.price"
-msgstr "価格 (USD)"
-
-#. js-lingui-explicit-id
-msgid "data.column.updated"
-msgstr "更新日"
-
-#. js-lingui-explicit-id
-msgid "extensions.title"
-msgstr "拡張"
-
-#. js-lingui-explicit-id
+#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:28
 msgid "extensions.description"
 msgstr "同梱拡張は UI（iframe）と Proc（worker）の2種類です。"
 
 #. js-lingui-explicit-id
-msgid "extensions.ui.title"
-msgstr "UI 拡張"
+#: packages/client-ui/src/features/data/vm/useDataVm.ts:80
+msgid "data.column.category"
+msgstr "カテゴリ"
 
 #. js-lingui-explicit-id
+#: packages/client-ui/src/features/data/ui/DataPage.tsx:58
+msgid "data.button.clear"
+msgstr "クリア"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/home/ui/HomePage.tsx:26
+msgid "home.button.click"
+msgstr "クリック"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/data/ui/DataPage.tsx:36
+msgid "data.title"
+msgstr "データ"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/app/AppShell.tsx:27
+msgid "nav.data"
+msgstr "データ"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/matrix/ui/MatrixPage.tsx:27
+msgid "matrix.description"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:25
+msgid "extensions.title"
+msgstr "拡張"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/app/AppShell.tsx:34
+msgid "nav.extensions"
+msgstr "拡張"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/data/ui/DataPage.tsx:79
+msgid "data.error"
+msgstr "データ取得に失敗しました:"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/data/ui/DataPage.tsx:49
+msgid "data.placeholder.filter"
+msgstr "名前/カテゴリでフィルタ..."
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/home/ui/HomePage.tsx:35
+msgid "home.message.hello"
+msgstr "kumix からこんにちは"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/home/ui/HomePage.tsx:14
+msgid "home.title"
+msgstr "ホーム"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/app/AppShell.tsx:20
+msgid "nav.home"
+msgstr "ホーム"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/matrix/ui/MatrixPage.tsx:35
+msgid "matrix.homeserver"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/data/vm/useDataVm.ts:77
+msgid "data.column.id"
+msgstr "ID"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/data/ui/DataPage.tsx:61
+msgid "data.button.invalidate"
+msgstr "無効化"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:126
 msgid "extensions.ui.description"
 msgstr "iframe と postMessage ブリッジで読み込みます。"
 
 #. js-lingui-explicit-id
+#: packages/client-ui/src/features/data/ui/DataPage.tsx:73
+msgid "data.loading"
+msgstr "読み込み中..."
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/matrix/ui/MatrixPage.tsx:24
+msgid "matrix.title"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/app/AppShell.tsx:41
+msgid "nav.matrix"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/data/vm/useDataVm.ts:78
+msgid "data.column.name"
+msgstr "名前"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:229
+msgid "extensions.proc.output"
+msgstr "出力"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/data/vm/useDataVm.ts:83
+msgid "data.column.price"
+msgstr "価格 (USD)"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:171
 msgid "extensions.proc.title"
 msgstr "Proc 拡張"
 
 #. js-lingui-explicit-id
-msgid "extensions.proc.description"
-msgstr "Web Worker で実行し HTML を返します。"
+#: packages/client-ui/src/features/about/ui/AboutPage.tsx:13
+msgid "about.description"
+msgstr "機能スライスは packages/client-ui/src/features 配下に置き、apps は薄く保ちます。"
 
 #. js-lingui-explicit-id
+#: packages/client-ui/src/features/data/ui/DataPage.tsx:64
+msgid "data.button.refetch"
+msgstr "再取得"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:204
 msgid "extensions.proc.button.render"
 msgstr "描画"
 
 #. js-lingui-explicit-id
-msgid "extensions.proc.output"
-msgstr "出力"
+#: packages/client-ui/src/features/data/ui/DataPage.tsx:86
+msgid "data.label.rows"
+msgstr "行数:"
 
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:174
+msgid "extensions.proc.description"
+msgstr "Web Worker で実行し HTML を返します。"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/matrix/ui/MatrixPage.tsx:56
+msgid "matrix.start"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/matrix/ui/MatrixPage.tsx:62
+msgid "matrix.state"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/matrix/ui/MatrixPage.tsx:59
+msgid "matrix.stop"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/data/ui/DataPage.tsx:39
+msgid "data.description"
+msgstr "TanStack Query + Table + Virtual のデモ（5,000行 / ソート / 仮想化）。"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/home/ui/HomePage.tsx:17
+msgid "home.description"
+msgstr "これは最小構成のモノレポ雛形です。共有パッケージ + TanStack Router + (任意で) Tauri バックエンド。"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:123
+msgid "extensions.ui.title"
+msgstr "UI 拡張"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/data/vm/useDataVm.ts:87
+msgid "data.column.updated"
+msgstr "更新日"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/app/AppShell.tsx:56
+msgid "header.tagline"
+msgstr "web / desktop 共通UI"

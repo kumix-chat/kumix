@@ -6,6 +6,16 @@
   "properties": {
     "name": { "type": "string" },
     "capabilities": { "type": "array", "items": { "type": "string" } },
-    "pluginOrigins": { "type": "array", "items": { "type": "string" } }
+    "pluginOrigins": { "type": "array", "items": { "type": "string" } },
+    "proc": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "defaultTimeoutMs": { "type": "integer", "minimum": 0 },
+        "maxTimeoutMs": { "type": "integer", "minimum": 0 },
+        "maxInputChars": { "type": "integer", "minimum": 0 },
+        "maxOutputChars": { "type": "integer", "minimum": 0 }
+      }
+    }
   }
 }

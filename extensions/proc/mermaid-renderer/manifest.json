@@ -2,6 +2,8 @@
   "id": "mermaid-renderer",
   "name": "Mermaid Renderer",
   "version": "0.0.1",
+  "kind": "proc",
+  "proc": { "entry": "worker.ts" },
   "capabilities": ["render.mermaid"],
   "timeoutMs": 5000
 }

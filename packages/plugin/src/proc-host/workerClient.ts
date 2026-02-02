@@ -28,11 +28,23 @@ export function createProcWorkerClient(
 ): ProcWorkerClient {
   const timeoutMs = options.timeoutMs ?? 5_000;
   const pendingById = new Map<string, Pending<unknown>>();
+  let terminalError: Error | null = null;
 
   function nextId(): string {
     return typeof crypto !== "undefined" && "randomUUID" in crypto
       ? crypto.randomUUID()
       : `${Date.now()}-${Math.random()}`;
+  }
+
+  function failAll(reason: unknown) {
+    const error = reason instanceof Error ? reason : new Error(String(reason));
+    if (!terminalError) terminalError = error;
+
+    for (const [id, pending] of pendingById.entries()) {
+      window.clearTimeout(pending.timeoutId);
+      pending.reject(error);
+      pendingById.delete(id);
+    }
   }
 
   function clearPending(id: string) {
@@ -81,7 +93,20 @@ export function createProcWorkerClient(
 
   worker.addEventListener("message", onMessage);
 
+  function onError(event: ErrorEvent) {
+    failAll(event.error ?? event.message ?? new Error("Proc worker error"));
+  }
+
+  function onMessageError() {
+    failAll(new Error("Proc worker message error"));
+  }
+
+  worker.addEventListener("error", onError);
+  worker.addEventListener("messageerror", onMessageError);
+
   function request<T>(message: HostToPluginMessage): Promise<T> {
+    if (terminalError) return Promise.reject(terminalError);
+
     return new Promise((resolve, reject) => {
       const timeoutId = window.setTimeout(() => {
         pendingById.delete(message.id);
@@ -117,6 +142,8 @@ export function createProcWorkerClient(
     },
     dispose() {
       worker.removeEventListener("message", onMessage);
+      worker.removeEventListener("error", onError);
+      worker.removeEventListener("messageerror", onMessageError);
       for (const id of pendingById.keys()) clearPending(id);
       worker.terminate();
     },

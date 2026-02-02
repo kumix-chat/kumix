@@ -3,16 +3,67 @@
   "title": "kumix extension manifest",
   "type": "object",
   "additionalProperties": false,
-  "required": ["id", "name", "version", "capabilities"],
+  "$defs": {
+    "uiConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["entry", "distribution"],
+      "properties": {
+        "entry": { "type": "string", "const": "entry.html" },
+        "distribution": { "type": "string", "enum": ["srcdoc"] }
+      }
+    },
+    "procConfig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["entry"],
+      "properties": {
+        "entry": { "type": "string", "const": "worker.ts" },
+        "wasm": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["mode"],
+          "properties": {
+            "mode": { "type": "string", "enum": ["embedded", "file"] },
+            "file": { "type": "string", "minLength": 1 }
+          }
+        }
+      }
+    }
+  },
+  "required": ["id", "name", "version", "capabilities", "kind"],
   "properties": {
     "id": { "type": "string", "minLength": 1 },
     "name": { "type": "string", "minLength": 1 },
     "version": { "type": "string", "minLength": 1 },
+    "kind": { "type": "string", "enum": ["ui", "proc"] },
     "capabilities": {
       "type": "array",
       "items": { "type": "string", "minLength": 1 },
       "minItems": 0
     },
-    "timeoutMs": { "type": "integer", "minimum": 0 }
-  }
+    "timeoutMs": { "type": "integer", "minimum": 0 },
+    "ui": { "$ref": "#/$defs/uiConfig" },
+    "proc": { "$ref": "#/$defs/procConfig" }
+  },
+  "oneOf": [
+    {
+      "title": "UI extension",
+      "type": "object",
+      "required": ["kind", "ui"],
+      "properties": {
+        "kind": { "const": "ui" },
+        "ui": { "$ref": "#/$defs/uiConfig" }
+      }
+    },
+    {
+      "title": "Proc extension",
+      "type": "object",
+      "required": ["kind", "proc"],
+      "properties": {
+        "kind": { "const": "proc" },
+        "proc": { "$ref": "#/$defs/procConfig" }
+      }
+    }
+  ]
 }

@@ -4,6 +4,12 @@ export type KumixPolicy = {
   name: string;
   capabilities: string[];
   pluginOrigins: string[];
+  proc?: {
+    defaultTimeoutMs?: number;
+    maxTimeoutMs?: number;
+    maxInputChars?: number;
+    maxOutputChars?: number;
+  };
 };
 
 export type PolicyName = "dev" | "strict";

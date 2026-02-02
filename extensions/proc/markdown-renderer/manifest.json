@@ -2,6 +2,8 @@
   "id": "markdown-renderer",
   "name": "Markdown Renderer",
   "version": "0.0.1",
+  "kind": "proc",
+  "proc": { "entry": "worker.ts" },
   "capabilities": ["render.markdown"],
   "timeoutMs": 5000
 }

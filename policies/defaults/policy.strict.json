@@ -1,5 +1,11 @@
 {
   "name": "strict",
   "capabilities": ["render.markdown", "render.mermaid", "unfurl", "theme.tokens.provide"],
-  "pluginOrigins": ["null"]
+  "pluginOrigins": ["null"],
+  "proc": {
+    "defaultTimeoutMs": 5000,
+    "maxTimeoutMs": 15000,
+    "maxInputChars": 200000,
+    "maxOutputChars": 400000
+  }
 }

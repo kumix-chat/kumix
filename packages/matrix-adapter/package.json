@@ -7,6 +7,7 @@
     ".": "./src/index.ts"
   },
   "dependencies": {
-    "@kumix/client-core": "workspace:*"
+    "@kumix/client-core": "workspace:*",
+    "matrix-js-sdk": "^36.0.0"
   }
 }

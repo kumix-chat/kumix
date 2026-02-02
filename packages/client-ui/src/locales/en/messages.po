@@ -5,136 +5,214 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: en\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
 
 #. js-lingui-explicit-id
-msgid "nav.home"
-msgstr "Home"
-
-#. js-lingui-explicit-id
-msgid "nav.data"
-msgstr "Data"
-
-#. js-lingui-explicit-id
-msgid "nav.extensions"
-msgstr "Extensions"
-
-#. js-lingui-explicit-id
-msgid "nav.about"
-msgstr "About"
-
-#. js-lingui-explicit-id
-msgid "header.tagline"
-msgstr "web / desktop shared UI"
-
-#. js-lingui-explicit-id
-msgid "home.title"
-msgstr "Home"
-
-#. js-lingui-explicit-id
-msgid "home.description"
-msgstr "This is a minimal monorepo scaffold: shared packages + TanStack Router + (optional) Tauri backend."
-
-#. js-lingui-explicit-id
-msgid "home.button.click"
-msgstr "Click"
-
-#. js-lingui-explicit-id
-msgid "home.message.hello"
-msgstr "Hello from kumix"
-
-#. js-lingui-explicit-id
+#: packages/client-ui/src/features/about/ui/AboutPage.tsx:10
 msgid "about.title"
 msgstr "About"
 
 #. js-lingui-explicit-id
-msgid "about.description"
-msgstr "Put feature slices under packages/client-ui/src/features and keep apps thin."
+#: packages/client-ui/src/app/AppShell.tsx:48
+msgid "nav.about"
+msgstr "About"
 
 #. js-lingui-explicit-id
-msgid "data.title"
-msgstr "Data"
+#: packages/client-ui/src/features/matrix/ui/MatrixPage.tsx:45
+msgid "matrix.accessToken"
+msgstr "Access token (demo)"
 
 #. js-lingui-explicit-id
-msgid "data.description"
-msgstr "TanStack Query + Table + Virtual demo (5,000 rows, sorted + virtualized)."
-
-#. js-lingui-explicit-id
-msgid "data.label.rows"
-msgstr "Rows:"
-
-#. js-lingui-explicit-id
-msgid "data.loading"
-msgstr "Loading..."
-
-#. js-lingui-explicit-id
-msgid "data.error"
-msgstr "Failed to load data:"
-
-#. js-lingui-explicit-id
-msgid "data.button.clear"
-msgstr "Clear"
-
-#. js-lingui-explicit-id
-msgid "data.button.invalidate"
-msgstr "Invalidate"
-
-#. js-lingui-explicit-id
-msgid "data.button.refetch"
-msgstr "Refetch"
-
-#. js-lingui-explicit-id
-msgid "data.placeholder.filter"
-msgstr "Filter name/category..."
-
-#. js-lingui-explicit-id
-msgid "data.column.id"
-msgstr "ID"
-
-#. js-lingui-explicit-id
-msgid "data.column.name"
-msgstr "Name"
-
-#. js-lingui-explicit-id
-msgid "data.column.category"
-msgstr "Category"
-
-#. js-lingui-explicit-id
-msgid "data.column.price"
-msgstr "Price (USD)"
-
-#. js-lingui-explicit-id
-msgid "data.column.updated"
-msgstr "Updated"
-
-#. js-lingui-explicit-id
-msgid "extensions.title"
-msgstr "Extensions"
-
-#. js-lingui-explicit-id
+#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:28
 msgid "extensions.description"
 msgstr "Bundled extensions come in two kinds: UI (iframe) and Proc (worker)."
 
 #. js-lingui-explicit-id
-msgid "extensions.ui.title"
-msgstr "UI Extension"
+#: packages/client-ui/src/features/data/vm/useDataVm.ts:80
+msgid "data.column.category"
+msgstr "Category"
 
 #. js-lingui-explicit-id
+#: packages/client-ui/src/features/data/ui/DataPage.tsx:58
+msgid "data.button.clear"
+msgstr "Clear"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/home/ui/HomePage.tsx:26
+msgid "home.button.click"
+msgstr "Click"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/data/ui/DataPage.tsx:36
+msgid "data.title"
+msgstr "Data"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/app/AppShell.tsx:27
+msgid "nav.data"
+msgstr "Data"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/matrix/ui/MatrixPage.tsx:27
+msgid "matrix.description"
+msgstr "Demonstrates the Matrix port boundary (adapter + client port)."
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:25
+msgid "extensions.title"
+msgstr "Extensions"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/app/AppShell.tsx:34
+msgid "nav.extensions"
+msgstr "Extensions"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/data/ui/DataPage.tsx:79
+msgid "data.error"
+msgstr "Failed to load data:"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/data/ui/DataPage.tsx:49
+msgid "data.placeholder.filter"
+msgstr "Filter name/category..."
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/home/ui/HomePage.tsx:35
+msgid "home.message.hello"
+msgstr "Hello from kumix"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/home/ui/HomePage.tsx:14
+msgid "home.title"
+msgstr "Home"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/app/AppShell.tsx:20
+msgid "nav.home"
+msgstr "Home"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/matrix/ui/MatrixPage.tsx:35
+msgid "matrix.homeserver"
+msgstr "Homeserver URL"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/data/vm/useDataVm.ts:77
+msgid "data.column.id"
+msgstr "ID"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/data/ui/DataPage.tsx:61
+msgid "data.button.invalidate"
+msgstr "Invalidate"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:126
 msgid "extensions.ui.description"
 msgstr "Loaded as an iframe with postMessage bridge."
 
 #. js-lingui-explicit-id
+#: packages/client-ui/src/features/data/ui/DataPage.tsx:73
+msgid "data.loading"
+msgstr "Loading..."
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/matrix/ui/MatrixPage.tsx:24
+msgid "matrix.title"
+msgstr "Matrix"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/app/AppShell.tsx:41
+msgid "nav.matrix"
+msgstr "Matrix"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/data/vm/useDataVm.ts:78
+msgid "data.column.name"
+msgstr "Name"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:229
+msgid "extensions.proc.output"
+msgstr "Output"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/data/vm/useDataVm.ts:83
+msgid "data.column.price"
+msgstr "Price (USD)"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:171
 msgid "extensions.proc.title"
 msgstr "Proc Extension"
 
 #. js-lingui-explicit-id
-msgid "extensions.proc.description"
-msgstr "Runs in a Web Worker and returns HTML."
+#: packages/client-ui/src/features/about/ui/AboutPage.tsx:13
+msgid "about.description"
+msgstr "Put feature slices under packages/client-ui/src/features and keep apps thin."
 
 #. js-lingui-explicit-id
+#: packages/client-ui/src/features/data/ui/DataPage.tsx:64
+msgid "data.button.refetch"
+msgstr "Refetch"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:204
 msgid "extensions.proc.button.render"
 msgstr "Render"
 
 #. js-lingui-explicit-id
-msgid "extensions.proc.output"
-msgstr "Output"
+#: packages/client-ui/src/features/data/ui/DataPage.tsx:86
+msgid "data.label.rows"
+msgstr "Rows:"
 
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:174
+msgid "extensions.proc.description"
+msgstr "Runs in a Web Worker and returns HTML."
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/matrix/ui/MatrixPage.tsx:56
+msgid "matrix.start"
+msgstr "Start sync"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/matrix/ui/MatrixPage.tsx:62
+msgid "matrix.state"
+msgstr "State:"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/matrix/ui/MatrixPage.tsx:59
+msgid "matrix.stop"
+msgstr "Stop sync"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/data/ui/DataPage.tsx:39
+msgid "data.description"
+msgstr "TanStack Query + Table + Virtual demo (5,000 rows, sorted + virtualized)."
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/home/ui/HomePage.tsx:17
+msgid "home.description"
+msgstr "This is a minimal monorepo scaffold: shared packages + TanStack Router + (optional) Tauri backend."
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:123
+msgid "extensions.ui.title"
+msgstr "UI Extension"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/data/vm/useDataVm.ts:87
+msgid "data.column.updated"
+msgstr "Updated"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/app/AppShell.tsx:56
+msgid "header.tagline"
+msgstr "web / desktop shared UI"

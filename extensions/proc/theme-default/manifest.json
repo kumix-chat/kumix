@@ -2,5 +2,7 @@
   "id": "theme-default",
   "name": "Theme: Default",
   "version": "0.0.1",
+  "kind": "proc",
+  "proc": { "entry": "worker.ts" },
   "capabilities": ["theme.tokens.provide"]
 }

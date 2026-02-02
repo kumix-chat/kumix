@@ -1,5 +1,11 @@
 {
   "name": "dev",
   "capabilities": ["*"],
-  "pluginOrigins": ["*"]
+  "pluginOrigins": ["*"],
+  "proc": {
+    "defaultTimeoutMs": 5000,
+    "maxTimeoutMs": 30000,
+    "maxInputChars": 2000000,
+    "maxOutputChars": 2000000
+  }
 }

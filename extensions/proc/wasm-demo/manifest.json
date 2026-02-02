@@ -2,6 +2,8 @@
   "id": "wasm-demo",
   "name": "WASM Demo (Markdown)",
   "version": "0.0.1",
+  "kind": "proc",
+  "proc": { "entry": "worker.ts", "wasm": { "mode": "embedded" } },
   "capabilities": ["render.markdown"],
   "timeoutMs": 5000
 }

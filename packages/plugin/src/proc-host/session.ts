@@ -29,7 +29,16 @@ export function createProcExtensionSession(
   }
 
   const worker = createWorker();
-  const client = createProcWorkerClient(worker, { timeoutMs: options.timeoutMs });
+  const defaultTimeout = policy.proc?.defaultTimeoutMs ?? 5_000;
+  const maxTimeout = policy.proc?.maxTimeoutMs;
+  const configuredTimeout = options.timeoutMs ?? defaultTimeout;
+  const timeoutMs =
+    typeof maxTimeout === "number" ? Math.min(configuredTimeout, maxTimeout) : configuredTimeout;
+
+  const maxInputChars = policy.proc?.maxInputChars ?? 200_000;
+  const maxOutputChars = policy.proc?.maxOutputChars ?? 400_000;
+
+  const client = createProcWorkerClient(worker, { timeoutMs });
   let disposed = false;
 
   const ready = client.ping();
@@ -49,15 +58,31 @@ export function createProcExtensionSession(
     return fn();
   }
 
+  function ensureInputAllowed(source: string) {
+    if (source.length <= maxInputChars) return;
+    throw new Error(`Proc extension input exceeds limit (${source.length} > ${maxInputChars})`);
+  }
+
+  function ensureOutputAllowed(html: string) {
+    if (html.length <= maxOutputChars) return;
+    throw new Error(`Proc extension output exceeds limit (${html.length} > ${maxOutputChars})`);
+  }
+
   return {
     ready,
     async renderMarkdown(source) {
       ensureCapability("render.markdown");
-      return call(() => client.renderMarkdown(source));
+      ensureInputAllowed(source);
+      const html = await call(() => client.renderMarkdown(source));
+      ensureOutputAllowed(html);
+      return html;
     },
     async renderMermaid(source) {
       ensureCapability("render.mermaid");
-      return call(() => client.renderMermaid(source));
+      ensureInputAllowed(source);
+      const html = await call(() => client.renderMermaid(source));
+      ensureOutputAllowed(html);
+      return html;
     },
     async getThemeTokens() {
       ensureCapability("theme.tokens.provide");

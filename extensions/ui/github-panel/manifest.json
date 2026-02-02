@@ -2,5 +2,7 @@
   "id": "github-panel",
   "name": "GitHub Panel",
   "version": "0.0.1",
+  "kind": "ui",
+  "ui": { "entry": "entry.html", "distribution": "srcdoc" },
   "capabilities": ["unfurl"]
 }
