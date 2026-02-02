@@ -11,9 +11,8 @@ function escapeHtml(text: string): string {
 
 function renderMermaid(source: string): string {
   const code = escapeHtml(source.trim());
-  const header = `<div class="text-xs text-slate-300">Mermaid (placeholder)</div>`;
-  const body = `<pre class="mt-2 whitespace-pre-wrap rounded-lg border border-white/10 bg-white/[0.03] p-3 text-xs">${code}</pre>`;
-  return `<div>${header}${body}</div>`;
+  // Host will run mermaid.js on `.mermaid` nodes after injecting this HTML.
+  return `<article class="kumix-prose"><div class="mermaid">${code}</div></article>`;
 }
 
 function post(message: PluginToHostMessage) {

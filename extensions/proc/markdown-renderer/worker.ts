@@ -1,4 +1,5 @@
 import type { HostToPluginMessage, PluginToHostMessage } from "@kumix/plugin-sdk";
+import { marked } from "marked";
 
 function escapeHtml(text: string): string {
   return text
@@ -9,19 +10,28 @@ function escapeHtml(text: string): string {
     .replaceAll("'", "&#039;");
 }
 
+marked.setOptions({
+  gfm: true,
+  breaks: false,
+  mangle: false,
+  headerIds: false,
+});
+
+marked.use({
+  walkTokens(token) {
+    if (token.type !== "html") return;
+    // Prevent raw HTML injection by escaping "html" tokens.
+    // This keeps the demo safe-ish without needing a DOM sanitizer inside a worker.
+    (token as unknown as { text?: string; raw?: string }).text = escapeHtml(
+      String((token as unknown as { text?: string }).text ?? ""),
+    );
+    (token as unknown as { raw?: string }).raw = escapeHtml(String(token.raw ?? ""));
+  },
+});
+
 function renderMarkdown(source: string): string {
-  const lines = source.split(/\r?\n/g);
-
-  const html = lines
-    .map((line) => {
-      if (line.startsWith("## ")) return `<h2>${escapeHtml(line.slice(3))}</h2>`;
-      if (line.startsWith("# ")) return `<h1>${escapeHtml(line.slice(2))}</h1>`;
-      if (!line.trim()) return "";
-      return `<p>${escapeHtml(line)}</p>`;
-    })
-    .join("");
-
-  return `<div>${html || "<p></p>"}</div>`;
+  const html = marked.parse(source) as string;
+  return `<article class="kumix-prose">${html || "<p></p>"}</article>`;
 }
 
 function post(message: PluginToHostMessage) {

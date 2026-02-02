@@ -27,6 +27,7 @@ export function DataPage() {
   const table = vm.state.table;
   const rows = vm.state.rows;
   const rowVirtualizer = vm.state.rowVirtualizer;
+  const unknownError = t({ id: "data.error.unknown", message: "Unknown error" });
 
   return (
     <section className="grid gap-4">
@@ -78,7 +79,7 @@ export function DataPage() {
           <AlertTitle>
             <Trans id="data.error">Failed to load data:</Trans>
           </AlertTitle>
-          <AlertDescription>{vm.state.errorMessage ?? "Unknown error"}</AlertDescription>
+          <AlertDescription>{vm.state.errorMessage ?? unknownError}</AlertDescription>
         </Alert>
       ) : (
         <div className="grid gap-2">

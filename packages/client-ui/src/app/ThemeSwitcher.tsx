@@ -1,5 +1,7 @@
 import { getBundledExtensions } from "@kumix/plugin";
 import { Select } from "@kumix/ui";
+import { t } from "@lingui/core/macro";
+import { Trans } from "@lingui/react/macro";
 import { useAtom, useAtomValue } from "jotai";
 import { useEffect, useMemo } from "react";
 import { extensionsEnabledKeysAtom } from "../features/extensions/state/extensions.atoms";
@@ -30,7 +32,10 @@ export function ThemeSwitcher() {
           }) satisfies { value: ThemeSource; label: string },
       );
 
-    return [{ value: "builtin", label: "Builtin" } as const, ...themes];
+    return [
+      { value: "builtin", label: t({ id: "theme.source.builtin", message: "Builtin" }) } as const,
+      ...themes,
+    ];
   }, [enabledKeys]);
 
   useEffect(() => {
@@ -41,19 +46,25 @@ export function ThemeSwitcher() {
   return (
     <div className="flex items-center gap-2">
       <Select
-        aria-label="Theme mode"
+        aria-label={t({ id: "theme.mode.label", message: "Theme mode" })}
         value={mode}
         onChange={(event) => {
           const next = event.target.value;
           if (isThemeMode(next)) setMode(next);
         }}
       >
-        <option value="system">System</option>
-        <option value="light">Light</option>
-        <option value="dark">Dark</option>
+        <option value="system">
+          <Trans id="theme.mode.system">System</Trans>
+        </option>
+        <option value="light">
+          <Trans id="theme.mode.light">Light</Trans>
+        </option>
+        <option value="dark">
+          <Trans id="theme.mode.dark">Dark</Trans>
+        </option>
       </Select>
       <Select
-        aria-label="Theme"
+        aria-label={t({ id: "theme.source.label", message: "Theme" })}
         value={source}
         onChange={(event) => {
           const next = event.target.value;
@@ -62,7 +73,9 @@ export function ThemeSwitcher() {
       >
         {enabledThemeSources.map((s) => (
           <option key={s.value} value={s.value}>
-            {s.label}
+            {s.value === "builtin"
+              ? t({ id: "theme.source.builtin", message: "Builtin" })
+              : s.label}
           </option>
         ))}
       </Select>

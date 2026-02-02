@@ -9,6 +9,7 @@ import {
   CardTitle,
   Input,
 } from "@kumix/ui";
+import { t } from "@lingui/core/macro";
 import { Trans } from "@lingui/react/macro";
 import { useMatrixVm } from "../vm/useMatrixVm";
 
@@ -47,7 +48,7 @@ export function MatrixPage() {
             <Input
               value={vm.state.accessToken}
               onChange={(e) => vm.actions.setAccessToken(e.target.value)}
-              placeholder="syt_xxx..."
+              placeholder={t({ id: "matrix.placeholder.accessToken", message: "syt_xxx..." })}
             />
           </div>
 

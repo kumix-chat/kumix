@@ -19,13 +19,14 @@ export function AboutPage() {
         <CardContent className="text-sm text-[color:var(--muted-fg)]">
           <ul className="list-disc pl-5">
             <li>
-              UI: <code>packages/client-ui</code> + <code>packages/ui</code>
+              <Trans id="about.list.ui">UI:</Trans> <code>packages/client-ui</code> +{" "}
+              <code>packages/ui</code>
             </li>
             <li>
-              Core: <code>packages/client-core</code>
+              <Trans id="about.list.core">Core:</Trans> <code>packages/client-core</code>
             </li>
             <li>
-              Adapter: <code>packages/matrix-adapter</code>
+              <Trans id="about.list.adapter">Adapter:</Trans> <code>packages/matrix-adapter</code>
             </li>
           </ul>
         </CardContent>

@@ -12,7 +12,8 @@
     "@kumix/matrix-adapter": "workspace:*",
     "@kumix/plugin": "workspace:*",
     "@kumix/storage": "workspace:*",
-    "@kumix/ui": "workspace:*"
+    "@kumix/ui": "workspace:*",
+    "mermaid": "^11.12.0"
   },
   "peerDependencies": {
     "@lingui/core": "^5.0.0",

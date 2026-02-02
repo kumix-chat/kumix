@@ -18,6 +18,7 @@ export function I18nAppProvider(props: { children: ReactNode; initialLocale?: Su
   const [locale, setLocale] = useState<SupportedLocale>(
     () => props.initialLocale ?? getInitialLocale(),
   );
+  const loadingText = locale === "ja" ? "読み込み中..." : "Loading...";
 
   useEffect(() => {
     if (props.initialLocale) return;
@@ -55,7 +56,9 @@ export function I18nAppProvider(props: { children: ReactNode; initialLocale?: Su
           <CardHeader>
             <CardTitle>kumix</CardTitle>
           </CardHeader>
-          <CardContent className="text-sm text-[color:var(--muted-fg)]">Loading...</CardContent>
+          <CardContent className="text-sm text-[color:var(--muted-fg)]">
+            {loadingText}
+          </CardContent>
         </Card>
       </div>
     );

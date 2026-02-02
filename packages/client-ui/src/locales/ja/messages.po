@@ -13,6 +13,21 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. js-lingui-explicit-id
+#: packages/client-ui/src/app/I18nAppProvider.tsx:60
+#~ msgid "app.loading"
+#~ msgstr "読み込み中..."
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:87
+msgid "extensions.kinds.uiSuffix"
+msgstr "（サンドボックス化された iframe アプリ）"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:91
+msgid "extensions.kinds.procSuffix"
+msgstr "（Web Worker プロセッサ）"
+
+#. js-lingui-explicit-id
 #: packages/client-ui/src/features/about/ui/AboutPage.tsx:10
 msgid "about.title"
 msgstr "概要"
@@ -23,12 +38,23 @@ msgid "nav.about"
 msgstr "概要"
 
 #. js-lingui-explicit-id
-#: packages/client-ui/src/features/matrix/ui/MatrixPage.tsx:45
+#: packages/client-ui/src/features/matrix/ui/MatrixPage.tsx:46
 msgid "matrix.accessToken"
-msgstr ""
+msgstr "アクセストークン（デモ）"
 
 #. js-lingui-explicit-id
-#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:28
+#: packages/client-ui/src/features/about/ui/AboutPage.tsx:29
+msgid "about.list.adapter"
+msgstr "Adapter:"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/app/ThemeSwitcher.tsx:36
+#: packages/client-ui/src/app/ThemeSwitcher.tsx:77
+msgid "theme.source.builtin"
+msgstr "組み込み"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:78
 msgid "extensions.description"
 msgstr "同梱拡張は UI（iframe）と Proc（worker）の2種類です。"
 
@@ -38,7 +64,7 @@ msgid "data.column.category"
 msgstr "カテゴリ"
 
 #. js-lingui-explicit-id
-#: packages/client-ui/src/features/data/ui/DataPage.tsx:58
+#: packages/client-ui/src/features/data/ui/DataPage.tsx:59
 msgid "data.button.clear"
 msgstr "クリア"
 
@@ -48,9 +74,20 @@ msgid "home.button.click"
 msgstr "クリック"
 
 #. js-lingui-explicit-id
-#: packages/client-ui/src/features/data/ui/DataPage.tsx:36
-msgid "data.title"
-msgstr "データ"
+#: packages/client-ui/src/features/about/ui/AboutPage.tsx:26
+msgid "about.list.core"
+msgstr "Core:"
+
+#. js-lingui-explicit-id
+#. placeholder {0}: vm.state.count
+#: packages/client-ui/src/features/home/ui/HomePage.tsx:29
+msgid "home.button.countPlusOne"
+msgstr "カウント +1 ({0})"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/app/ThemeSwitcher.tsx:63
+msgid "theme.mode.dark"
+msgstr "ダーク"
 
 #. js-lingui-explicit-id
 #: packages/client-ui/src/app/AppShell.tsx:27
@@ -58,12 +95,32 @@ msgid "nav.data"
 msgstr "データ"
 
 #. js-lingui-explicit-id
-#: packages/client-ui/src/features/matrix/ui/MatrixPage.tsx:27
-msgid "matrix.description"
-msgstr ""
+#: packages/client-ui/src/features/data/ui/DataPage.tsx:37
+msgid "data.title"
+msgstr "データ"
 
 #. js-lingui-explicit-id
-#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:25
+#: packages/client-ui/src/features/matrix/ui/MatrixPage.tsx:28
+msgid "matrix.description"
+msgstr "Matrix ポート境界（adapter + client port）のデモです。"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:103
+msgid "extensions.controls.description"
+msgstr "同梱拡張を有効/無効にします（キー・バリューのポートに保存。既定: localStorage）。"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/app/LanguageSwitcher.tsx:28
+msgid "language.english"
+msgstr "English"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:100
+msgid "extensions.controls.title"
+msgstr "拡張の制御"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:75
 msgid "extensions.title"
 msgstr "拡張"
 
@@ -73,12 +130,12 @@ msgid "nav.extensions"
 msgstr "拡張"
 
 #. js-lingui-explicit-id
-#: packages/client-ui/src/features/data/ui/DataPage.tsx:79
+#: packages/client-ui/src/features/data/ui/DataPage.tsx:80
 msgid "data.error"
 msgstr "データ取得に失敗しました:"
 
 #. js-lingui-explicit-id
-#: packages/client-ui/src/features/data/ui/DataPage.tsx:49
+#: packages/client-ui/src/features/data/ui/DataPage.tsx:50
 msgid "data.placeholder.filter"
 msgstr "名前/カテゴリでフィルタ..."
 
@@ -98,9 +155,9 @@ msgid "nav.home"
 msgstr "ホーム"
 
 #. js-lingui-explicit-id
-#: packages/client-ui/src/features/matrix/ui/MatrixPage.tsx:35
+#: packages/client-ui/src/features/matrix/ui/MatrixPage.tsx:36
 msgid "matrix.homeserver"
-msgstr ""
+msgstr "ホームサーバーURL"
 
 #. js-lingui-explicit-id
 #: packages/client-ui/src/features/data/vm/useDataVm.ts:77
@@ -108,29 +165,39 @@ msgid "data.column.id"
 msgstr "ID"
 
 #. js-lingui-explicit-id
-#: packages/client-ui/src/features/data/ui/DataPage.tsx:61
+#: packages/client-ui/src/features/data/ui/DataPage.tsx:62
 msgid "data.button.invalidate"
 msgstr "無効化"
 
 #. js-lingui-explicit-id
-#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:126
+#: packages/client-ui/src/app/LanguageSwitcher.tsx:23
+msgid "language.label"
+msgstr "言語"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/app/ThemeSwitcher.tsx:60
+msgid "theme.mode.light"
+msgstr "ライト"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:191
 msgid "extensions.ui.description"
 msgstr "iframe と postMessage ブリッジで読み込みます。"
 
 #. js-lingui-explicit-id
-#: packages/client-ui/src/features/data/ui/DataPage.tsx:73
+#: packages/client-ui/src/features/data/ui/DataPage.tsx:74
 msgid "data.loading"
 msgstr "読み込み中..."
 
 #. js-lingui-explicit-id
-#: packages/client-ui/src/features/matrix/ui/MatrixPage.tsx:24
+#: packages/client-ui/src/features/matrix/ui/MatrixPage.tsx:25
 msgid "matrix.title"
-msgstr ""
+msgstr "Matrix"
 
 #. js-lingui-explicit-id
 #: packages/client-ui/src/app/AppShell.tsx:41
 msgid "nav.matrix"
-msgstr ""
+msgstr "Matrix"
 
 #. js-lingui-explicit-id
 #: packages/client-ui/src/features/data/vm/useDataVm.ts:78
@@ -138,7 +205,27 @@ msgid "data.column.name"
 msgstr "名前"
 
 #. js-lingui-explicit-id
+#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:284
+msgid "extensions.proc.noneEnabled"
+msgstr "有効な Proc 拡張がありません。"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:152
+msgid "extensions.proc.noneFound"
+msgstr "Proc 拡張が見つかりません。"
+
+#. js-lingui-explicit-id
 #: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:229
+msgid "extensions.ui.noneEnabled"
+msgstr "有効な UI 拡張がありません。"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:116
+msgid "extensions.ui.noneFound"
+msgstr "UI 拡張が見つかりません。"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:296
 msgid "extensions.proc.output"
 msgstr "出力"
 
@@ -148,9 +235,19 @@ msgid "data.column.price"
 msgstr "価格 (USD)"
 
 #. js-lingui-explicit-id
-#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:171
+#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:148
+msgid "extensions.controls.proc"
+msgstr "Proc"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:238
 msgid "extensions.proc.title"
 msgstr "Proc 拡張"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:90
+msgid "extensions.kinds.procLabel"
+msgstr "Proc:"
 
 #. js-lingui-explicit-id
 #: packages/client-ui/src/features/about/ui/AboutPage.tsx:13
@@ -158,44 +255,64 @@ msgid "about.description"
 msgstr "機能スライスは packages/client-ui/src/features 配下に置き、apps は薄く保ちます。"
 
 #. js-lingui-explicit-id
-#: packages/client-ui/src/features/data/ui/DataPage.tsx:64
+#: packages/client-ui/src/features/data/ui/DataPage.tsx:65
 msgid "data.button.refetch"
 msgstr "再取得"
 
 #. js-lingui-explicit-id
-#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:204
+#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:271
 msgid "extensions.proc.button.render"
 msgstr "描画"
 
 #. js-lingui-explicit-id
-#: packages/client-ui/src/features/data/ui/DataPage.tsx:86
+#: packages/client-ui/src/features/data/ui/DataPage.tsx:87
 msgid "data.label.rows"
 msgstr "行数:"
 
 #. js-lingui-explicit-id
-#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:174
+#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:241
 msgid "extensions.proc.description"
 msgstr "Web Worker で実行し HTML を返します。"
 
 #. js-lingui-explicit-id
-#: packages/client-ui/src/features/matrix/ui/MatrixPage.tsx:56
+#: packages/client-ui/src/features/matrix/ui/MatrixPage.tsx:57
 msgid "matrix.start"
-msgstr ""
+msgstr "同期開始"
 
 #. js-lingui-explicit-id
-#: packages/client-ui/src/features/matrix/ui/MatrixPage.tsx:62
+#: packages/client-ui/src/features/matrix/ui/MatrixPage.tsx:63
 msgid "matrix.state"
-msgstr ""
+msgstr "状態:"
 
 #. js-lingui-explicit-id
-#: packages/client-ui/src/features/matrix/ui/MatrixPage.tsx:59
+#: packages/client-ui/src/features/matrix/ui/MatrixPage.tsx:60
 msgid "matrix.stop"
-msgstr ""
+msgstr "同期停止"
 
 #. js-lingui-explicit-id
-#: packages/client-ui/src/features/data/ui/DataPage.tsx:39
+#: packages/client-ui/src/app/ThemeSwitcher.tsx:57
+msgid "theme.mode.system"
+msgstr "システム"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/matrix/ui/MatrixPage.tsx:51
+msgid "matrix.placeholder.accessToken"
+msgstr "syt_xxx..."
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/data/ui/DataPage.tsx:40
 msgid "data.description"
 msgstr "TanStack Query + Table + Virtual のデモ（5,000行 / ソート / 仮想化）。"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/app/ThemeSwitcher.tsx:67
+msgid "theme.source.label"
+msgstr "テーマ"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/app/ThemeSwitcher.tsx:49
+msgid "theme.mode.label"
+msgstr "テーマモード"
 
 #. js-lingui-explicit-id
 #: packages/client-ui/src/features/home/ui/HomePage.tsx:17
@@ -203,9 +320,29 @@ msgid "home.description"
 msgstr "これは最小構成のモノレポ雛形です。共有パッケージ + TanStack Router + (任意で) Tauri バックエンド。"
 
 #. js-lingui-explicit-id
-#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:123
+#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:112
+msgid "extensions.controls.ui"
+msgstr "UI"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:188
 msgid "extensions.ui.title"
 msgstr "UI 拡張"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/about/ui/AboutPage.tsx:22
+msgid "about.list.ui"
+msgstr "UI:"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/extensions/ui/ExtensionsPage.tsx:86
+msgid "extensions.kinds.uiLabel"
+msgstr "UI:"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/features/data/ui/DataPage.tsx:30
+msgid "data.error.unknown"
+msgstr "不明なエラー"
 
 #. js-lingui-explicit-id
 #: packages/client-ui/src/features/data/vm/useDataVm.ts:87
@@ -216,3 +353,8 @@ msgstr "更新日"
 #: packages/client-ui/src/app/AppShell.tsx:56
 msgid "header.tagline"
 msgstr "web / desktop 共通UI"
+
+#. js-lingui-explicit-id
+#: packages/client-ui/src/app/LanguageSwitcher.tsx:31
+msgid "language.japanese"
+msgstr "日本語"

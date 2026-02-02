@@ -1,5 +1,7 @@
 import { Select } from "@kumix/ui";
+import { t } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react";
+import { Trans } from "@lingui/react/macro";
 import type { ChangeEvent } from "react";
 import { activateLocale, isSupportedLocale, LOCALE_STORAGE_KEY } from "../i18n/i18n";
 import { useKumixKeyValue } from "./ports/KeyValueProvider";
@@ -17,9 +19,17 @@ export function LanguageSwitcher() {
   }
 
   return (
-    <Select aria-label="Language" value={current} onChange={(event) => void onChange(event)}>
-      <option value="en">EN</option>
-      <option value="ja">日本語</option>
+    <Select
+      aria-label={t({ id: "language.label", message: "Language" })}
+      value={current}
+      onChange={(event) => void onChange(event)}
+    >
+      <option value="en">
+        <Trans id="language.english">English</Trans>
+      </option>
+      <option value="ja">
+        <Trans id="language.japanese">日本語</Trans>
+      </option>
     </Select>
   );
 }

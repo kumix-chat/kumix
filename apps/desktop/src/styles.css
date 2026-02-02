@@ -206,6 +206,116 @@
     background: var(--border);
     border-radius: 4px;
   }
+
+  /* Minimal markdown/typography styles for proc-rendered HTML. */
+  .kumix-prose {
+    color: var(--fg);
+    line-height: 1.6;
+  }
+
+  .kumix-prose a {
+    color: var(--primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .kumix-prose h1 {
+    margin: 0 0 0.75rem;
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+
+  .kumix-prose h2 {
+    margin: 1.25rem 0 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .kumix-prose h3 {
+    margin: 1.1rem 0 0.45rem;
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .kumix-prose h4 {
+    margin: 1rem 0 0.4rem;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  .kumix-prose h5 {
+    margin: 0.9rem 0 0.35rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  .kumix-prose h6 {
+    margin: 0.85rem 0 0.35rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--muted-fg);
+  }
+
+  .kumix-prose p {
+    margin: 0.5rem 0;
+    color: var(--muted-fg);
+  }
+
+  .kumix-prose ul,
+  .kumix-prose ol {
+    margin: 0.75rem 0;
+    padding-left: 1.25rem;
+    color: var(--muted-fg);
+  }
+
+  .kumix-prose ul {
+    list-style: disc;
+  }
+
+  .kumix-prose ol {
+    list-style: decimal;
+  }
+
+  .kumix-prose code {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+  }
+
+  .kumix-prose pre {
+    margin: 0.75rem 0;
+    overflow: auto;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    background: var(--overlay);
+    padding: 0.75rem;
+    color: var(--overlay-fg);
+  }
+
+  .kumix-prose blockquote {
+    margin: 0.75rem 0;
+    border-left: 3px solid var(--border);
+    padding-left: 0.75rem;
+    color: var(--muted-fg);
+  }
+
+  .kumix-prose hr {
+    margin: 1rem 0;
+    border: 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .kumix-prose .mermaid svg {
+    max-width: 100%;
+    height: auto;
+  }
 }
 
 @utility touch-target {

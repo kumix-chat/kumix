@@ -12,10 +12,60 @@ import {
   Textarea,
 } from "@kumix/ui";
 import { Trans } from "@lingui/react/macro";
+import { useEffect, useRef } from "react";
 import { useExtensionsVm } from "../vm/useExtensionsVm";
 
 export function ExtensionsPage() {
   const vm = useExtensionsVm();
+  const outputRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (vm.state.procFormat !== "mermaid") return;
+    if (!vm.state.renderedHtml) return;
+
+    const root = outputRef.current;
+    if (!root) return;
+
+    const nodes = Array.from(
+      root.querySelectorAll<HTMLElement>(".mermaid:not([data-kumix-rendered])"),
+    );
+    if (nodes.length === 0) return;
+
+    let cancelled = false;
+    void (async () => {
+      const { default: mermaid } = await import("mermaid");
+      if (cancelled) return;
+
+      const isDark = document.documentElement.classList.contains("dark");
+      mermaid.initialize({
+        startOnLoad: false,
+        securityLevel: "strict",
+        theme: isDark ? "dark" : "default",
+      });
+
+      let counter = 0;
+      for (const node of nodes) {
+        const source = node.textContent ?? "";
+        if (!source.trim()) continue;
+
+        const id = `kumix-mermaid-${Date.now()}-${counter++}`;
+        try {
+          const result = await mermaid.render(id, source);
+          node.innerHTML = result.svg;
+          if (typeof result.bindFunctions === "function") result.bindFunctions(node);
+          node.setAttribute("data-kumix-rendered", "true");
+        } catch {
+          // If mermaid fails, keep the raw source visible.
+        }
+      }
+    })().catch(() => {
+      // If mermaid fails, keep the raw source visible.
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [vm.state.procFormat, vm.state.renderedHtml]);
 
   return (
     <section className="grid gap-4">
@@ -33,10 +83,12 @@ export function ExtensionsPage() {
         <CardContent className="text-sm text-[color:var(--muted-fg)]">
           <ul className="list-disc pl-5">
             <li>
-              UI: <code>extensions/ui</code> (sandboxed iframe apps)
+              <Trans id="extensions.kinds.uiLabel">UI:</Trans> <code>extensions/ui</code>{" "}
+              <Trans id="extensions.kinds.uiSuffix">(sandboxed iframe apps)</Trans>
             </li>
             <li>
-              Proc: <code>extensions/proc</code> (Web Worker processors)
+              <Trans id="extensions.kinds.procLabel">Proc:</Trans> <code>extensions/proc</code>{" "}
+              <Trans id="extensions.kinds.procSuffix">(Web Worker processors)</Trans>
             </li>
           </ul>
         </CardContent>
@@ -44,16 +96,25 @@ export function ExtensionsPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Extension Controls</CardTitle>
+          <CardTitle>
+            <Trans id="extensions.controls.title">Extension Controls</Trans>
+          </CardTitle>
           <CardDescription>
-            Enable/disable bundled extensions (stored via a key-value port; default: localStorage).
+            <Trans id="extensions.controls.description">
+              Enable/disable bundled extensions (stored via a key-value port; default:
+              localStorage).
+            </Trans>
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4 lg:grid-cols-2">
           <div className="grid gap-2">
-            <div className="text-xs font-semibold text-[color:var(--fg)]">UI</div>
+            <div className="text-xs font-semibold text-[color:var(--fg)]">
+              <Trans id="extensions.controls.ui">UI</Trans>
+            </div>
             {vm.state.ui.length === 0 ? (
-              <div className="text-sm text-[color:var(--muted-fg)]">No UI extensions found.</div>
+              <div className="text-sm text-[color:var(--muted-fg)]">
+                <Trans id="extensions.ui.noneFound">No UI extensions found.</Trans>
+              </div>
             ) : (
               <div className="grid gap-2">
                 {vm.state.ui.map((ext) => {
@@ -83,9 +144,13 @@ export function ExtensionsPage() {
           </div>
 
           <div className="grid gap-2">
-            <div className="text-xs font-semibold text-[color:var(--fg)]">Proc</div>
+            <div className="text-xs font-semibold text-[color:var(--fg)]">
+              <Trans id="extensions.controls.proc">Proc</Trans>
+            </div>
             {vm.state.proc.length === 0 ? (
-              <div className="text-sm text-[color:var(--muted-fg)]">No proc extensions found.</div>
+              <div className="text-sm text-[color:var(--muted-fg)]">
+                <Trans id="extensions.proc.noneFound">No proc extensions found.</Trans>
+              </div>
             ) : (
               <div className="grid gap-2">
                 {vm.state.proc.map((ext) => {
@@ -160,7 +225,9 @@ export function ExtensionsPage() {
                 />
               </>
             ) : (
-              <div className="text-sm text-[color:var(--muted-fg)]">No UI extensions enabled.</div>
+              <div className="text-sm text-[color:var(--muted-fg)]">
+                <Trans id="extensions.ui.noneEnabled">No UI extensions enabled.</Trans>
+              </div>
             )}
           </CardContent>
         </Card>
@@ -214,7 +281,7 @@ export function ExtensionsPage() {
               </>
             ) : (
               <div className="text-sm text-[color:var(--muted-fg)]">
-                No proc extensions enabled.
+                <Trans id="extensions.proc.noneEnabled">No proc extensions enabled.</Trans>
               </div>
             )}
 
@@ -229,6 +296,7 @@ export function ExtensionsPage() {
                 <Trans id="extensions.proc.output">Output</Trans>
               </div>
               <div
+                ref={outputRef}
                 className="mt-2 grid gap-2 text-sm text-[color:var(--muted-fg)]"
                 // biome-ignore lint/security/noDangerouslySetInnerHtml: Proc extensions return HTML (demo); production should sanitize/escape per capability.
                 dangerouslySetInnerHTML={{ __html: vm.state.renderedHtml }}

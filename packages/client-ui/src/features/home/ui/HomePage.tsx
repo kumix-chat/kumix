@@ -26,7 +26,7 @@ export function HomePage(props: { right?: ReactNode }) {
               <Trans id="home.button.click">Click</Trans>
             </Button>
             <Button intent="outline" onPress={() => vm.actions.increment()}>
-              Count +1 ({vm.state.count})
+              <Trans id="home.button.countPlusOne">Count +1 ({vm.state.count})</Trans>
             </Button>
             {props.right}
           </div>
